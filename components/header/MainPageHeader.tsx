@@ -16,6 +16,7 @@ const MainPageHeader: NextPage = () => {
 				</p>
 				<p className={`${styles.subtitleArt} ${styles.subtitle} `}> Art</p>
 			</div>
+			<div className={`${styles.iconsBar}`}></div>
 		</header>
 	);
 };
