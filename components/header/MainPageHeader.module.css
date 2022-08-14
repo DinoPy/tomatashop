@@ -23,6 +23,7 @@
 	text-align: center;
 	color: #f6bf4f;
 	text-transform: uppercase;
+	text-shadow: 0 0 0.1em #86621abc;
 }
 
 .headerLower {
