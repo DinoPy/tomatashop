@@ -4,17 +4,43 @@
 	justify-content: center;
 	align-items: center;
 	padding: 1em;
+	margin: 1em;
 }
 
 .imageButton {
 	background: inherit;
 	border: none;
+	margin-left: 0.5em;
 }
 
 .inputBox {
 	background: lightgray;
-	height: 40px;
-	width: 300px;
+	height: 30px;
+	width: 500px;
 	border: none;
 	border-radius: 10px;
+
+	color: gray;
+	padding: 1em 1.5em;
+	font-size: 1rem;
+}
+
+.filtersContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.filtersContainer a:nth-child(1n + 2) {
+	margin-left: 1em;
+	border-left: 2px solid rgba(0, 0, 0, 0.201);
+	padding-left: 1em;
+}
+
+.filtersContainer a {
+	cursor: pointer;
+	margin: 1rem;
+	font-size: 2rem;
+	text-transform: uppercase;
 }

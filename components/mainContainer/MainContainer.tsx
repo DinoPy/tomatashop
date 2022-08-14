@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { NextComponentType, NextPage } from 'next';
+import { NextPage } from 'next';
 import styles from './MainContainer.module.css';
+import { ProductsProps } from '../../types/interface/productPropsInterface';
 
-const MainContainer: NextPage = () => {
-	const [inputValue, setInputValue] = useState('');
+const MainContainer: NextPage<ProductsProps> = ({ products }) => {
+	const [inputValue, setInputValue] = useState('test');
+	console.log(products);
+
 	return (
 		<>
 			<div className={`${styles.searchContainer}`}>
@@ -16,15 +19,21 @@ const MainContainer: NextPage = () => {
 					onChange={(e) => setInputValue(e.target.value)}
 				/>
 				<button className={styles.imageButton}>
-					{' '}
 					<Image
-						width='30px'
-						height='30px'
+						width='25px'
+						height='25px'
 						src='/images/search.png'
 						alt='searchIcon'
 					/>
 				</button>
-				<p> {inputValue}</p>
+			</div>
+			<div className={`${styles.filtersContainer}`}>
+				<a> Paintings </a>
+				<a> Sketches </a>
+				<a> Illustrations </a>
+				<a> Callendars </a>
+				<a> Covers </a>
+				<a> Clothing </a>
 			</div>
 		</>
 	);
