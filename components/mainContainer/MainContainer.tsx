@@ -3,10 +3,18 @@ import Image from 'next/image';
 import { NextPage } from 'next';
 import styles from './MainContainer.module.css';
 import { ProductsProps } from '../../types/interface/productPropsInterface';
+import ProductItem from '../ProductItem/ProductItem';
+
 
 const MainContainer: NextPage<ProductsProps> = ({ products }) => {
 	const [inputValue, setInputValue] = useState('test');
-	console.log(products);
+
+
+	const productJsx = products.map((product) => (
+		<ProductItem key={product.id} product={product} />
+	))
+
+
 
 	return (
 		<>
@@ -34,6 +42,9 @@ const MainContainer: NextPage<ProductsProps> = ({ products }) => {
 				<a> Callendars </a>
 				<a> Covers </a>
 				<a> Clothing </a>
+			</div>
+			<div>
+				{productJsx}
 			</div>
 		</>
 	);
