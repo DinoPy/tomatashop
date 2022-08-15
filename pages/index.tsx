@@ -3,8 +3,9 @@ import MainPageHeader from '../components/header/MainPageHeader';
 import Head from 'next/head';
 import Image from 'next/image';
 import MainContainer from '../components/mainContainer/MainContainer';
+import { ProductsProps } from '../types/interface/productPropsInterface';
 
-const Home: NextPage = ({ products }) => {
+const Home: NextPage<ProductsProps> = ({ products }) => {
 	return (
 		<div>
 			<MainPageHeader />
@@ -16,8 +17,7 @@ const Home: NextPage = ({ products }) => {
 export async function getServerSideProps() {
 	const response = await fetch('https://fakestoreapi.com/products');
 	const products = await response.json();
-	console.log(products);
-	console.log('ran');
+
 
 	return {
 		props: {
