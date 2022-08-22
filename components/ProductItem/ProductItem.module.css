@@ -1,0 +1,22 @@
+.productItem {
+	width: 250px;
+	height: 300px;
+	background-color: white;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1em;
+	cursor: pointer;
+}
+
+.productImage {
+	min-width: 100%;
+	padding-bottom: 1em;
+}
+
+.productTitle {
+	color: black;
+}

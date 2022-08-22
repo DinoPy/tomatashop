@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 
+root {
+	--bg-color-dark: #272727;
+}
+
 html,
 body {
 	padding: 0;
 	margin: 0;
 	font-family: 'Iris Grover' sans-serif;
 
-	background-color: #0102002d;
+	background-color: #272727;
+	color: rgba(255, 255, 255, 0.806);
 }
 
 a {
@@ -27,14 +32,4 @@ h5,
 h6 {
 	margin: 0;
 	padding: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-	html {
-		color-scheme: dark;
-	}
-	body {
-		color: white;
-		background: black;
-	}
 }
