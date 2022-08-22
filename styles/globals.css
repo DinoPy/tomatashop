@@ -1,22 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 
-root {
-	--bg-color-dark: #272727;
-}
-
 html,
 body {
+	--bg-color-dark: #2f2f2feb;
+	--primary-color: #a8c85e;
+
 	padding: 0;
 	margin: 0;
-	font-family: 'Iris Grover' sans-serif;
+	font-family: 'Iris Grover', sans-serif;
 
-	background-color: #272727;
+	background-color: var(--bg-color-dark);
 	color: rgba(255, 255, 255, 0.806);
 }
 
 a {
 	color: inherit;
 	text-decoration: none;
+}
+
+a:hover {
+	color: var(--primary-color);
 }
 
 * {
@@ -32,4 +35,20 @@ h5,
 h6 {
 	margin: 0;
 	padding: 0;
+}
+
+::-webkit-scrollbar {
+	width: 0.7em;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(138, 137, 137, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(138, 137, 137, 0.8);
 }

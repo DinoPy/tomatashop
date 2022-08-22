@@ -61,8 +61,8 @@
 	background-size: 450%;
 	background-position: 0 80%;
 	position: relative;
-	fill: yellow;
 	filter: hue-rotate(10deg);
+	margin-bottom: 5em;
 }
 
 .iconsBar::after {
