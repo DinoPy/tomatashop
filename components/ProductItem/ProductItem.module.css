@@ -1,7 +1,6 @@
 .productItem {
 	width: 300px;
 	height: 350px;
-	background-color: rgb(255, 255, 255);
 	border-radius: 10px;
 	overflow: hidden;
 	display: flex;
@@ -10,19 +9,29 @@
 	align-items: center;
 	padding: 1em;
 	cursor: pointer;
+	border: 1px solid rgba(204, 204, 204, 0.54);
 }
 
 .productImage {
 	min-width: 100%;
-	padding-bottom: 1em;
+	width: 200px;
+	height: 250px;
+	align-self: flex-start;
+	background: white;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 1em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding-bottom: 1em;
-	margin-bottom: 1em;
-	border-bottom: 2px solid #27272780;
 }
 
 .productTitle {
-	color: black;
+	width: 100%;
+	text-align: center;
+	padding-top: 1em;
+	margin-top: 1em;
+	border-top: lightgray 2px solid;
+	color: white;
 }
