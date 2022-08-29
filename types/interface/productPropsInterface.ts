@@ -3,11 +3,11 @@ export interface ProductsProps {
 }
 
 export interface Product {
-		category: string;
-		description: string;
-		id: string;
-		image: string;
-		price: number;
-		rating: { rate: number; count: number };
-		title: string;
+	category: string;
+	description: string;
+	_id: string;
+	image: string;
+	price: number;
+	rating: { rate: number; count: number };
+	title: string;
 }

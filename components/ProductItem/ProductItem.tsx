@@ -6,8 +6,8 @@ import { useSession } from 'next-auth/react';
 import styles from './ProductItem.module.css';
 
 const ProductItem: NextPage<{ product: Product }> = ({ product }) => {
-	const {data:session} = useSession()
-	console.log(session)
+	const { data: session, status } = useSession();
+	console.log('SESSION: ', session, 'STATUS: ', status);
 	const item = (product: Product): JSX.Element => (
 		<>
 			<div className={`${styles.productItem}`}>
@@ -26,7 +26,6 @@ const ProductItem: NextPage<{ product: Product }> = ({ product }) => {
 
 	return (
 		<>
-			<p> </p>
 			<div> {item(product)} </div>
 		</>
 	);

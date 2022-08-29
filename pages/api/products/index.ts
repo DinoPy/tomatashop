@@ -17,6 +17,7 @@ export default async function handler(
 				products: await Products.find(),
 			});
 			break;
+
 		case 'POST':
 			const { title, price, description, image, category, rating } = req.body;
 			if (!title || !price || !description || !image || !category || !rating) {
@@ -27,6 +28,7 @@ export default async function handler(
 				product: await Products.create(req.body),
 			});
 			break;
+
 		default:
 			res.status(405).json({
 				message: 'Method not allowed',
