@@ -8,7 +8,8 @@ import ProductItem from '../ProductItem/ProductItem';
 const MainContainer: NextPage<ProductsProps> = ({ products }) => {
 	const [inputValue, setInputValue] = useState('test');
 
-	const productJsx = products.map((product) => (
+
+	const productJsx = products?.map((product) => (
 		<ProductItem key={product.id} product={product} />
 	));
 
