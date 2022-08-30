@@ -4,6 +4,9 @@ html,
 body {
 	--bg-color-dark: #2f2f2feb;
 	--primary-color: #a8c85e;
+	--log-out-icon: white;
+
+	min-height: 100vh;
 
 	padding: 0;
 	margin: 0;
@@ -56,4 +59,8 @@ h6 {
 
 ::-webkit-scrollbar-thumb:hover {
 	background: rgba(138, 137, 137, 0.8);
+}
+
+.signOutIcon {
+	fill: white;
 }

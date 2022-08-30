@@ -36,6 +36,25 @@ const MainContainer: NextPage<ProductsProps> = ({ products }) => {
 
 	return (
 		<>
+			<div style={{ marginLeft: '3rem' }}>
+				{status === 'authenticated' && session ? (
+					// <Link href='/api/auth/signout'> Sign Out </Link>
+					<>
+						<h2> Signed in as {session.user?.name}</h2>
+						<a href='#' onClick={() => signOut()}>
+							{' '}
+							Sign out{' '}
+						</a>
+					</>
+				) : (
+					<a href='#' onClick={() => signIn()}>
+						{' '}
+						Sign in{' '}
+					</a>
+					// <Link href='/api/auth/signin'> Sign In </Link>
+				)}
+				<br />
+			</div>
 			<SearchBox inputValue={inputValue} handleSearch={handleSearch} />
 
 			<div className={`${styles.filtersContainer}`}>
