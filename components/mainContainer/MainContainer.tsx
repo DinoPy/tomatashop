@@ -7,7 +7,7 @@ import { NextPage } from 'next';
 import {
 	Product,
 	ProductsProps,
-} from '../../types/interface/productPropsInterface';
+} from '../../types/interface/productPropsInterface'
 //components
 import ProductItem from '../productItem/ProductItem';
 //styles
