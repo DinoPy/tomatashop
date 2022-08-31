@@ -12,7 +12,7 @@ import {
 import ProductItem from '../productItem/ProductItem';
 //styles
 import styles from './MainContainer.module.css';
-import SearchBox from './SearchBox/SearchBox';
+import SearchBox from '../SearchBox/SearchBox';
 
 const MainContainer: NextPage<ProductsProps> = ({ products }) => {
 	const [inputValue, setInputValue] = useState('');

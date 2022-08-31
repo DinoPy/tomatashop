@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
-import MainPageHeader from '../components/mainPageHeader/MainPageHeader';
+import Header from '../components/header/Header';
+import SearchBox from '../components/SearchBox/SearchBox';
 import MainContainer from '../components/mainContainer/MainContainer';
 import dbConnect from '../lib/dbConnect';
 import Products from '../models/Products';
@@ -8,7 +9,8 @@ const Home: NextPage<{ products: string }> = (props) => {
 	const products = JSON.parse(props.products);
 	return (
 		<div>
-			<MainPageHeader />
+			<Header />
+			{/* <SearchBox /> */}
 			<MainContainer products={products} />
 		</div>
 	);

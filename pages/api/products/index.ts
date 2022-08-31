@@ -49,6 +49,9 @@ export default async function handler(
           category,
           rating,
         });
+
+        product.save();
+        res.status(201).json({ success: true, data: product });
       } catch (error) {
         if (error instanceof Error) {
           res.status(400).json({ success: false, error: error.message });

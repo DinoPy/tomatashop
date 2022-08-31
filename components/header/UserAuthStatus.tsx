@@ -13,7 +13,7 @@ const UserAuthStatus = () => {
 			{status === 'authenticated' && session ? (
 				// <Link href='/api/auth/signout'> Sign Out </Link>
 				<>
-					<h2> Signed in as {session.user?.name}</h2>
+					<h2> Signed in as {session.user?.name?.split(" ")[0]}</h2>
 					<a href='#' onClick={() => signOut()}>
 						Sign out{' '}
 						<Image

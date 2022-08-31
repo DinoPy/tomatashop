@@ -1,56 +1,29 @@
-.searchContainer {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 1em;
-	margin: 1em 0;
-}
-
-.imageButton {
-	background: inherit;
-	border: none;
-	margin-left: 0.5em;
-}
-
-.inputBox {
-	background: lightgray;
-	height: 30px;
-	width: 500px;
-	border: none;
-	border-radius: 10px;
-
-	color: gray;
-	padding: 1em 1.5em;
-	font-size: 1rem;
-}
-
 .filtersContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
 
-	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .filtersContainer a:nth-child(1n + 2) {
-	border-left: 2px solid rgba(255, 255, 255, 0.201);
-	padding-left: 1em;
+  border-left: 2px solid rgba(255, 255, 255, 0.201);
+  padding-left: 1em;
 }
 
 .filtersContainer a {
-	cursor: pointer;
-	margin: 1rem;
-	font-size: 2rem;
+  cursor: pointer;
+  margin: 1rem;
+  font-size: 2rem;
 }
 
 .products {
-	margin: 2em 0 0;
-	gap: 2em;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
+  margin: 2em 0 0;
+  gap: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }

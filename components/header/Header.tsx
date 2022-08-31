@@ -4,9 +4,11 @@ import styles from './Header.module.css';
 import UserAuthStatus from './UserAuthStatus';
 
 const Header = () => {
+	// add favorite items and cart items to header
+	// and maybe categories as a dropdown menu
 	return (
 		<header className={styles.header}>
-			<Link href='/'> Home </Link>
+			<Link href='/'><a className={styles.logo}>TomataStore</a></Link>
 			<UserAuthStatus />
 		</header>
 	);

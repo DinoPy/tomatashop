@@ -1,66 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Julee&display=swap");
 
 html,
 body {
-	--bg-color-dark: #2f2f2feb;
-	--primary-color: #a8c85e;
-	--log-out-icon: white;
+  --bg-color-dark: #2f2f2feb;
+  --primary-color: #a8c85e;
+  --log-out-icon: white;
 
-	min-height: 100vh;
+  min-height: 100vh;
 
-	padding: 0;
-	margin: 0;
-	font-family: 'Iris Grover', sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: "Iris Grover", sans-serif;
 
-	background-color: var(--bg-color-dark);
-	color: rgba(255, 255, 255, 0.806);
+  background-color: var(--bg-color-dark);
+  color: rgba(255, 255, 255, 0.806);
 }
 
 body {
-	padding-bottom: 2em;
+  padding-bottom: 2em;
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 a:hover {
-	color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 * {
-	box-sizing: border-box;
-	/* outline: 1px solid red !important; */
+  box-sizing: border-box;
+  /* outline: 1px solid red !important; */
 }
 
 p,
+a,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
 ::-webkit-scrollbar {
-	width: 0.7em;
+  width: 0.7em;
 }
 
 ::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-	background: rgba(138, 137, 137, 0.5);
+  background: rgba(138, 137, 137, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: rgba(138, 137, 137, 0.8);
+  background: rgba(138, 137, 137, 0.8);
 }
 
 .signOutIcon {
-	fill: white;
+  fill: white;
 }

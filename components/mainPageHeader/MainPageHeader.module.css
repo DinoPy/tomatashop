@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Julee&display=swap');
-
 /* .headerUpper {
 	height: 180px;
 	background: rgb(94, 31, 31);
@@ -15,61 +12,61 @@
 } */
 
 .shopTitle {
-	position: absolute;
-	left: 1em;
-	transform: rotate(-45deg) translateY(10px);
-	margin: 0;
-	font-family: 'Irish Grover', cursive;
-	font-size: 2.5rem;
-	text-align: center;
-	color: #f6bf4f;
-	text-transform: uppercase;
-	text-shadow: 0 0 0.2em #2d1f04bc;
-	cursor: pointer;
+  position: absolute;
+  left: 1em;
+  transform: rotate(-45deg) translateY(10px);
+  margin: 0;
+  font-family: "Irish Grover", cursive;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #f6bf4f;
+  text-transform: uppercase;
+  text-shadow: 0 0 0.2em #2d1f04bc;
+  cursor: pointer;
 }
 
 .headerLower {
-	position: relative;
-	background-color: #889b4f;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	padding: 0 20em 0 10em;
-	height: 170px;
-	box-shadow: inset 0 10px 1em 0 rgba(0, 0, 0, 0.5);
+  position: relative;
+  background-color: #889b4f;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20em 0 10em;
+  height: 170px;
+  box-shadow: inset 0 10px 1em 0 rgba(0, 0, 0, 0.5);
 }
 
 .subtitle {
-	font-family: 'Julee', cursive;
-	color: #475916;
-	text-shadow: 1px 1px black;
-	text-align: center;
+  font-family: "Julee", cursive;
+  color: #475916;
+  text-shadow: 1px 1px black;
+  text-align: center;
 }
 
 .subtitleArt {
-	font-size: 4.5rem;
-	text-transform: uppercase;
+  font-size: 4.5rem;
+  text-transform: uppercase;
 }
 
 .subtitleCenter {
-	font-size: 2.8rem;
+  font-size: 2.8rem;
 }
 
 .iconsBar {
-	height: 50px;
-	background-image: url('/images/pattern.svg');
-	background-size: 450%;
-	background-position: 0 80%;
-	position: relative;
-	filter: hue-rotate(10deg);
-	margin-bottom: 5em;
+  height: 50px;
+  background-image: url("/images/pattern.svg");
+  background-size: 450%;
+  background-position: 0 80%;
+  position: relative;
+  filter: hue-rotate(10deg);
+  margin-bottom: 5em;
 }
 
 .iconsBar::after {
-	content: '';
-	background-color: rgba(0, 0, 0, 0.108);
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	position: absolute;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.108);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
 }
