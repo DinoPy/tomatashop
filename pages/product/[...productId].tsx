@@ -2,18 +2,41 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Header from '../../components/header/Header';
+import IndividualProductPage from '../../components/individualProductPage/IndividualProductPage';
 import { Product } from '../../types/interface/productPropsInterface';
+import Products from '../../models/Products';
 
-const ProductPage: NextPage<Product> = () => {
-	const router = useRouter();
-	const { productId } = router.query;
+const ProductPage: NextPage<{ product: Product }> = ({ product }) => {
+	// const router = useRouter();
+	// const { productId } = router.query;
 
 	return (
 		<>
 			<Header />
-			<div> Product # {productId} </div>
+			<IndividualProductPage product={product} />
 		</>
 	);
 };
 
 export default ProductPage;
+
+export async function getServerSideProps(context: any) {
+	const productId = context.params.productId;
+
+	try {
+		const product = await Products.findById(productId);
+		console.log(product);
+		return {
+			props: {
+				product: JSON.parse(JSON.stringify(product)),
+			},
+		};
+	} catch (error) {
+		return {
+			props: {
+				// error: error.message,
+				error: 'Product not found',
+			},
+		};
+	}
+}

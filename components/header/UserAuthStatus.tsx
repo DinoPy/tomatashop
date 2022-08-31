@@ -6,7 +6,7 @@ import signOutIcon from '../../public/images/logout.svg';
 import { icons } from '../images';
 
 const UserAuthStatus = () => {
-	console.log(signOutIcon);
+	// we have signOutIcon that might be of use.
 	const { data: session, status } = useSession();
 	return (
 		<div>
@@ -16,18 +16,19 @@ const UserAuthStatus = () => {
 					<h2> Signed in as {session.user?.name}</h2>
 					<a href='#' onClick={() => signOut()}>
 						Sign out{' '}
-						{/* <Image
+						<Image
 							src='/images/logout.svg'
 							alt=' '
 							width='16px'
 							height='16px'
-						/> */}
+						/>
 					</a>
 				</>
 			) : (
 				<a href='#' onClick={() => signIn()}>
 					{' '}
 					Sign in{' '}
+					<Image src='/images/login.svg' alt=' ' width='16px' height='16px' />
 				</a>
 				// <Link href='/api/auth/signin'> Sign In </Link>
 			)}

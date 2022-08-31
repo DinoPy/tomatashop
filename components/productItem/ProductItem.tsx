@@ -16,6 +16,7 @@ const ProductItem: NextPage<{ product: Product }> = ({ product }) => {
 							height='200px'
 							src={product.image}
 							alt={product.title}
+							blurDataURL={product.image}
 						/>
 					</div>
 					<p className={`${styles.productTitle}`}> {product.title}</p>
