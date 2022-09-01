@@ -5,6 +5,7 @@ import CategoryDropdown from './CategoryDropdown/CategoryDropdown';
 import styles from './SearchBox.module.css';
 import { throttle } from '../../utils/throttle';
 import axios from 'axios';
+import Link from 'next/link';
 
 type PropsType = {
 	inputValue: string;
@@ -27,7 +28,8 @@ const SearchBox: NextPage = () => {
 	// call to api to get search results
 	const search = async (value: string) => {
 		const results = await axios.get(`/api/products?query=${value}`);
-		const data = await results;
+		const { data } = await results;
+		console.log(data.data)
 		setSearchResults(data.data);
 	};
 
@@ -72,10 +74,10 @@ const SearchBox: NextPage = () => {
 				</div>
 
 				<div className={styles.dropdown}>
-					{/* {searchResults &&
+					{searchResults &&
 						searchResults?.map((result) => (
-							<div key={result._id}>{result.title}</div>
-						))} */}
+							<Link href={`/product/${result._id}`} key={result._id}>{result.title}</Link>
+						))}
 				</div>
 			</div>
 			<div>
