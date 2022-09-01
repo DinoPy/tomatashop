@@ -41,7 +41,7 @@ const SearchBox: NextPage = () => {
 	);
 
 	React.useEffect(() => {
-		if (toSearch) {
+		if (toSearch.length > 0) {
 
 			search(toSearch);
 			console.log(searchResults);
@@ -80,7 +80,7 @@ const SearchBox: NextPage = () => {
 				</div>
 
 				<div className={styles.dropdown}>
-					{searchResults && toSearch &&
+					{searchResults && toSearch.length > 0 &&
 						searchResults?.map((result) => (<>
 							<Link href={`/product/${result._id}`} key={result._id}><a>{`${result.title.slice(0, 35)}..`}</a></Link>
 						</>
