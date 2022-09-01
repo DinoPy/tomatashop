@@ -79,7 +79,7 @@ const SearchBox: NextPage = () => {
 					</button>
 				</div>
 
-				<div className={styles.dropdown}>
+				<div className={styles.dropdown} >
 					{searchResults && toSearch.length > 0 &&
 						searchResults?.map((result) => (<>
 							<Link href={`/product/${result._id}`} key={result._id}><a>{`${result.title.slice(0, 35)}..`}</a></Link>
