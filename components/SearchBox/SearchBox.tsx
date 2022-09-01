@@ -41,8 +41,14 @@ const SearchBox: NextPage = () => {
 	);
 
 	React.useEffect(() => {
-		search(toSearch);
-		console.log(searchResults);
+		if (toSearch) {
+
+			search(toSearch);
+			console.log(searchResults);
+		}
+
+		return () => { }
+
 	}, [toSearch]);
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +60,7 @@ const SearchBox: NextPage = () => {
 		<div className={`${styles.searchContainer}`}>
 			<CategoryDropdown />
 			<div className={styles.searchWrapper}>
-				<div>
+				<div className={styles.smallContainer}>
 					<input
 						className={styles.inputBox}
 						type='text'
@@ -74,9 +80,10 @@ const SearchBox: NextPage = () => {
 				</div>
 
 				<div className={styles.dropdown}>
-					{searchResults &&
-						searchResults?.map((result) => (
-							<Link href={`/product/${result._id}`} key={result._id}>{result.title}</Link>
+					{searchResults && toSearch &&
+						searchResults?.map((result) => (<>
+							<Link href={`/product/${result._id}`} key={result._id}><a>{`${result.title.slice(0, 35)}..`}</a></Link>
+						</>
 						))}
 				</div>
 			</div>
