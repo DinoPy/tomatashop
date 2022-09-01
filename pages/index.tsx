@@ -10,7 +10,7 @@ const Home: NextPage<{ products: string }> = (props) => {
 	return (
 		<div>
 			<Header />
-			{/* <SearchBox /> */}
+			<SearchBox />
 			<MainContainer products={products} />
 		</div>
 	);

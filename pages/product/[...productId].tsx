@@ -5,6 +5,7 @@ import Header from '../../components/header/Header';
 import IndividualProductPage from '../../components/individualProductPage/IndividualProductPage';
 import { Product } from '../../types/interface/productPropsInterface';
 import Products from '../../models/Products';
+import SearchBox from '../../components/SearchBox/SearchBox';
 
 const ProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	// const router = useRouter();
@@ -13,6 +14,7 @@ const ProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	return (
 		<>
 			<Header />
+			<SearchBox />
 			<IndividualProductPage product={product} />
 		</>
 	);
@@ -25,7 +27,6 @@ export async function getServerSideProps(context: any) {
 
 	try {
 		const product = await Products.findById(productId);
-		console.log(product);
 		return {
 			props: {
 				product: JSON.parse(JSON.stringify(product)),

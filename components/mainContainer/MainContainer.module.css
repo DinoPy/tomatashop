@@ -1,29 +1,8 @@
-.filtersContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.filtersContainer a:nth-child(1n + 2) {
-  border-left: 2px solid rgba(255, 255, 255, 0.201);
-  padding-left: 1em;
-}
-
-.filtersContainer a {
-  cursor: pointer;
-  margin: 1rem;
-  font-size: 2rem;
-}
-
 .products {
-  margin: 2em 0 0;
-  gap: 2em;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+	margin: 10em 0 0;
+	gap: 2em;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 }

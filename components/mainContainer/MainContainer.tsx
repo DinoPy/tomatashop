@@ -7,7 +7,7 @@ import { NextPage } from 'next';
 import {
 	Product,
 	ProductsProps,
-} from '../../types/interface/productPropsInterface'
+} from '../../types/interface/productPropsInterface';
 //components
 import ProductItem from '../productItem/ProductItem';
 //styles
@@ -15,7 +15,7 @@ import styles from './MainContainer.module.css';
 import SearchBox from '../SearchBox/SearchBox';
 
 const MainContainer: NextPage<ProductsProps> = ({ products }) => {
-	const [inputValue, setInputValue] = useState('');
+	// const [inputValue, setInputValue] = useState('');
 	const [productData, setProductData] = useState<Product[]>(products);
 	const [searchResults, setSearchResults] = useState<Product[]>(productData);
 	const { data: session, status } = useSession();
@@ -25,27 +25,18 @@ const MainContainer: NextPage<ProductsProps> = ({ products }) => {
 			<ProductItem key={product._id} product={product} />
 		));
 
-	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputValue(e.target.value);
-		setSearchResults(
-			productData.filter((product) =>
-				product.title.toLowerCase().includes(e.target.value.toLowerCase())
-			)
-		);
-	};
+	//removed for now
+	// const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	setInputValue(e.target.value);
+	// 	setSearchResults(
+	// 		productData.filter((product) =>
+	// 			product.title.toLowerCase().includes(e.target.value.toLowerCase())
+	// 		)
+	// 	);
+	// };
 
 	return (
 		<>
-			<SearchBox inputValue={inputValue} handleSearch={handleSearch} />
-
-			<div className={`${styles.filtersContainer}`}>
-				<a> Paintings </a>
-				<a> Sketches </a>
-				<a> Illustrations </a>
-				<a> Callendars </a>
-				<a> Covers </a>
-				<a> Clothing </a>
-			</div>
 			<div className={`${styles.products}`}>
 				{searchResults.length > 0 ? (
 					productsJsx(searchResults)

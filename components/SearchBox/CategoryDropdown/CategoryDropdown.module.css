@@ -1,0 +1,49 @@
+/* position relative so the children can have position */
+.dropdown {
+	position: relative;
+}
+
+/* styles for the button */
+.dropdownButton {
+	background-color: rgba(26, 82, 26, 0.679);
+	font-size: 1.4rem;
+	color: whitesmoke;
+	border: none;
+	cursor: pointer;
+	padding: 0.4em 1.3em;
+	border-radius: 5px;
+}
+
+/* customize the dropdown menu, display none and position absolute */
+/* so it can be positioned relative to the dropdown button */
+/* and hidden by default */
+.dropdownContent {
+	display: none;
+	position: absolute;
+	top: 100%;
+	background-color: #252525;
+	min-width: 120px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* styles for the anchors default */
+.dropdownContent a {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* background change for hover on anchors */
+.dropdownContent a:hover {
+	background-color: #1c1b1b;
+}
+
+.dropdown:hover .dropdownContent {
+	display: block;
+}
+
+.dropdown:hover .dropdownButton {
+	background-color: lightgreen;
+}
