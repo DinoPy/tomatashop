@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Header from '../components/header/Header';
-import SearchBox from '../components/SearchBox/SearchBox';
-import MainContainer from '../components/mainContainer/MainContainer';
+import SearchBox from '../components/navigationSubheader/NavigationSubheader';
+import MainContainer from '../components/storeContainer/StoreContainer';
 import dbConnect from '../lib/dbConnect';
 import Products from '../models/Products';
 
@@ -11,7 +11,12 @@ const Home: NextPage<{ products: string }> = (props) => {
 		<div>
 			<Header />
 			<SearchBox />
-			<MainContainer products={products} />
+			{
+				// huge image
+				// small description
+				// some carusel
+				// footer
+			}
 		</div>
 	);
 };

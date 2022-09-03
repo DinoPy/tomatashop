@@ -6,22 +6,22 @@ const CategoryDropdown = () => {
 		<div className={styles.dropdown}>
 			<button className={styles.dropdownButton}> Categories </button>
 			<div className={styles.dropdownContent}>
-				<Link href='/products/painting'>
+				<Link href='/category/painting'>
 					<a> Paintings </a>
 				</Link>
-				<Link href='/products/sketch'>
+				<Link href='/category/sketch'>
 					<a> Sketches </a>
 				</Link>
-				<Link href='/products/illustration'>
+				<Link href='/category/illustration'>
 					<a> Illustrations </a>
 				</Link>
-				<Link href='/products/calendar'>
+				<Link href='/category/calendar'>
 					<a> Calendars </a>
 				</Link>
-				<Link href='/products/cover'>
+				<Link href='/category/cover'>
 					<a> Covers </a>
 				</Link>
-				<Link href='/products/clothing'>
+				<Link href='/category/clothing'>
 					<a> Clothing </a>
 				</Link>
 			</div>

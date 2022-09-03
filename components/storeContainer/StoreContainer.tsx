@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useSession, signIn, signOut } from 'next-auth/react';
+
 //types
 import { NextPage } from 'next';
 import {
@@ -11,29 +9,16 @@ import {
 //components
 import ProductItem from '../productItem/ProductItem';
 //styles
-import styles from './MainContainer.module.css';
-import SearchBox from '../SearchBox/SearchBox';
+import styles from './StoreContainer.module.css';
 
 const MainContainer: NextPage<ProductsProps> = ({ products }) => {
-	// const [inputValue, setInputValue] = useState('');
 	const [productData, setProductData] = useState<Product[]>(products);
 	const [searchResults, setSearchResults] = useState<Product[]>(productData);
-	const { data: session, status } = useSession();
 
 	const productsJsx = (itemsList: Product[]): JSX.Element[] =>
 		itemsList?.map((product) => (
 			<ProductItem key={product._id} product={product} />
 		));
-
-	//removed for now
-	// const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setInputValue(e.target.value);
-	// 	setSearchResults(
-	// 		productData.filter((product) =>
-	// 			product.title.toLowerCase().includes(e.target.value.toLowerCase())
-	// 		)
-	// 	);
-	// };
 
 	return (
 		<>

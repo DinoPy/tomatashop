@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import CategoryDropdown from './CategoryDropdown/CategoryDropdown';
-import styles from './SearchBox.module.css';
+import styles from './NavigationSubheader.module.css';
 import { throttle } from '../../utils/throttle';
 import axios from 'axios';
 import Link from 'next/link';
@@ -13,23 +13,20 @@ type PropsType = {
 };
 
 const SearchBox: NextPage = () => {
-	// I can throttle the to search and do an use effect to update
-	// the search results which can then be used to conditonally render
-
 	const [toSearch, setToSearch] = React.useState('');
 	const [inputValue, setInputValue] = React.useState('');
-	const [searchResults, setSearchResults] = React.useState([
+	const [searchResults, setSearchResults] = React.useState<
 		{
-			_id: '',
-			title: '',
-		},
-	]);
+			_id: string;
+			title: string;
+		}[]
+	>([]);
 
 	// call to api to get search results
 	const search = async (value: string) => {
 		const results = await axios.get(`/api/products?query=${value}`);
 		const { data } = await results;
-		console.log(data.data)
+		console.log(data.data);
 		setSearchResults(data.data);
 	};
 
@@ -41,14 +38,12 @@ const SearchBox: NextPage = () => {
 	);
 
 	React.useEffect(() => {
-		if (toSearch.length > 0) {
-
+		if (toSearch.length > 2) {
 			search(toSearch);
 			console.log(searchResults);
 		}
 
-		return () => { }
-
+		return () => {};
 	}, [toSearch]);
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,8 +52,11 @@ const SearchBox: NextPage = () => {
 	};
 
 	return (
-		<div className={`${styles.searchContainer}`}>
-			<CategoryDropdown />
+		<div className={`${styles.subheaderContainer}`}>
+			<div>
+				<Link href='/store'> Store </Link>
+				<CategoryDropdown />
+			</div>
 			<div className={styles.searchWrapper}>
 				<div className={styles.smallContainer}>
 					<input
@@ -79,11 +77,15 @@ const SearchBox: NextPage = () => {
 					</button>
 				</div>
 
-				<div className={styles.dropdown} >
-					{searchResults && toSearch.length > 0 &&
-						searchResults?.map((result) => (<>
-							<Link href={`/product/${result._id}`} key={result._id}><a>{`${result.title.slice(0, 35)}..`}</a></Link>
-						</>
+				<div className={styles.dropdown}>
+					{searchResults.length > 0 &&
+						toSearch.length > 2 &&
+						searchResults?.map((result) => (
+							<>
+								<Link href={`/product/${result._id}`} key={result._id}>
+									<a>{`${result.title}`}</a>
+								</Link>
+							</>
 						))}
 				</div>
 			</div>

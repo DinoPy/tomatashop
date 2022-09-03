@@ -1,6 +1,6 @@
-import dbConnect from "../../../lib/dbConnect.js";
-import type { NextApiRequest, NextApiResponse } from "next";
-import Products from "../../../models/Products";
+import dbConnect from '../../../lib/dbConnect.js';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import Products from '../../../models/Products';
 
 // TO DO - add pagination
 // todo - add search
@@ -8,93 +8,123 @@ import Products from "../../../models/Products";
 // todo - add filtering
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+	req: NextApiRequest,
+	res: NextApiResponse
 ) {
-  const { method } = req;
+	const { method } = req;
 
-  try {
-    await dbConnect();
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(500).json({ message: error.message });
-    }
-  }
+	try {
+		await dbConnect();
+	} catch (error: unknown) {
+		if (error instanceof Error) {
+			return res.status(500).json({ message: error.message });
+		}
+	}
 
-  switch (method) {
-    case "GET": {
-      const { query } = req.query;
-      try {
-        if (query) {
-          const products = await Products.find({
-            title: { $regex: query, $options: "i" },
-          }).select("_id title");
-          res.status(200).json({ success: true, data: products.slice(0, 5) });
-        } else {
-          res.status(200).json({ success: true, data: [] });
-        }
-      } catch (error) {
-        if (error instanceof Error) {
-          res.status(400).json({ success: false, error: error.message });
-        }
-      }
-      break;
-    }
+	switch (method) {
+		case 'GET': {
+			const { query } = req.query;
 
-    case "POST": {
-      const { title, price, description, image, category, rating } = req.body;
-      if (!title || !price || !description || !image || !category || !rating) {
-        res.status(400).json({ message: "Please provide all fields" });
-        break;
-      }
-      try {
-        const product = await Products.create({
-          title,
-          price,
-          description,
-          image,
-          category,
-          rating,
-        });
+			try {
+				if (query) {
+					const results = await Products.aggregate([
+						{
+							$search: {
+								index: 'autocomplete',
+								autocomplete: {
+									query: query,
+									path: 'title',
+									tokenOrder: 'sequential',
+									fuzzy: {
+										maxEdits: 2,
+									},
+								},
+							},
+						},
+						{ $limit: 6 },
+						{ $project: { title: 1 } },
+					]);
+					if (results) {
+						console.log(results);
+						return res.status(200).json({ message: 'success', data: results });
+					}
+				}
+				res.status(200).json({ message: 'success', data: [] });
+			} catch (error) {
+				console.log(error);
+				res.send([]);
+			}
+			// try {
+			// 	if (query) {
+			// 		const products = await Products.find({
+			// 			title: { $regex: query, $options: 'i' },
+			// 		}).select('_id title');
+			// 		res.status(200).json({ success: true, data: products.slice(0, 5) });
+			// 	} else {
+			// 		res.status(200).json({ success: true, data: [] });
+			// 	}
+			// } catch (error) {
+			// 	if (error instanceof Error) {
+			// 		res.status(400).json({ success: false, error: error.message });
+			// 	}
+			// }
+			// break;
+		}
 
-        product.save();
-        res.status(201).json({ success: true, data: product });
-      } catch (error) {
-        if (error instanceof Error) {
-          res.status(400).json({ success: false, error: error.message });
-        }
-      }
-      break;
-    }
+		case 'POST': {
+			const { title, price, description, image, category, rating } = req.body;
+			if (!title || !price || !description || !image || !category || !rating) {
+				res.status(400).json({ message: 'Please provide all fields' });
+				break;
+			}
+			try {
+				const product = await Products.create({
+					title,
+					price,
+					description,
+					image,
+					category,
+					rating,
+				});
 
-    case "PUT": {
-      const { id } = req.query;
-      const { title, price, description, image, category, rating } = req.body;
-      if (!id) {
-        res.status(400).json({ message: "Please provide an id" });
-      }
-      try {
-        const product = await Products.findByIdAndUpdate(id, {
-          title,
-          price,
-          description,
-          image,
-          category,
-          rating,
-        });
-        res.status(200).json({ success: true, data: product });
-      } catch (error) {
-        if (error instanceof Error) {
-          res.status(400).json({ success: false, error: error.message });
-        }
-      }
-      break;
-    }
+				product.save();
+				res.status(201).json({ success: true, data: product });
+			} catch (error) {
+				if (error instanceof Error) {
+					res.status(400).json({ success: false, error: error.message });
+				}
+			}
+			break;
+		}
 
-    default:
-      res.status(405).json({
-        message: "Method not allowed",
-      });
-      break;
-  }
+		case 'PUT': {
+			const { id } = req.query;
+			const { title, price, description, image, category, rating } = req.body;
+			if (!id) {
+				res.status(400).json({ message: 'Please provide an id' });
+			}
+			try {
+				const product = await Products.findByIdAndUpdate(id, {
+					title,
+					price,
+					description,
+					image,
+					category,
+					rating,
+				});
+				res.status(200).json({ success: true, data: product });
+			} catch (error) {
+				if (error instanceof Error) {
+					res.status(400).json({ success: false, error: error.message });
+				}
+			}
+			break;
+		}
+
+		default:
+			res.status(405).json({
+				message: 'Method not allowed',
+			});
+			break;
+	}
 }

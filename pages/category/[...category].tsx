@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import { Product } from '../../types/interface/productPropsInterface';
 import ProductItem from '../../components/productItem/ProductItem';
 import Header from '../../components/header/Header';
-import SearchBox from '../../components/SearchBox/SearchBox';
+import SearchBox from '../../components/navigationSubheader/NavigationSubheader';
 
 const Category: NextPage<{ products: Product[] }> = ({ products }) => {
 	const getProductJsx = (products: Product[]): JSX.Element[] =>

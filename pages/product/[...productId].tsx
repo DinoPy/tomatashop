@@ -5,7 +5,7 @@ import Header from '../../components/header/Header';
 import IndividualProductPage from '../../components/individualProductPage/IndividualProductPage';
 import { Product } from '../../types/interface/productPropsInterface';
 import Products from '../../models/Products';
-import SearchBox from '../../components/SearchBox/SearchBox';
+import SearchBox from '../../components/navigationSubheader/NavigationSubheader';
 
 const ProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	// const router = useRouter();
