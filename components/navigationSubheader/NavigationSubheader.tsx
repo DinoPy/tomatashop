@@ -54,7 +54,6 @@ const SearchBox: NextPage = () => {
 	return (
 		<div className={`${styles.subheaderContainer}`}>
 			<div>
-				<Link href='/store'> Store </Link>
 				<CategoryDropdown />
 			</div>
 			<div className={styles.searchWrapper}>
