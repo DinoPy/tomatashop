@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from 'Deviant.module.css';
+import styles from './Deviant.module.css';
 
 const Deviant = () => {
 	return (
