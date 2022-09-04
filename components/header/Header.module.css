@@ -1,20 +1,20 @@
 .header {
-  height: 100px;
-  background-color: #3c3c3c;
-  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.36));
-  padding: 0 2em;
+	height: 130px;
+	background-color: #3c3c3c;
+	filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.36));
+	padding: 0 2em;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .signOut {
-  fill: white;
-  --log-out-icon: white;
+	fill: white;
+	--log-out-icon: white;
 }
 
 .logo {
-  font-family: "Julee", sans-serif;
-  font-size: 3rem;
+	font-family: 'Julee', sans-serif;
+	font-size: 3rem;
 }
