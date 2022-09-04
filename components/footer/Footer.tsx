@@ -5,7 +5,7 @@ const Footer = () => {
 	return (
 		<footer className={styles.footer}>
 			<h3> Contact me </h3>
-			<a> Deviant </a>
+			<a href='https://www.deviantart.com/yoktomato'> Deviant </a>
 			<a> Discord </a>
 			<a> Patreon </a>
 		</footer>

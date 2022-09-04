@@ -54,21 +54,6 @@ export default async function handler(
 				console.log(error);
 				res.send([]);
 			}
-			// try {
-			// 	if (query) {
-			// 		const products = await Products.find({
-			// 			title: { $regex: query, $options: 'i' },
-			// 		}).select('_id title');
-			// 		res.status(200).json({ success: true, data: products.slice(0, 5) });
-			// 	} else {
-			// 		res.status(200).json({ success: true, data: [] });
-			// 	}
-			// } catch (error) {
-			// 	if (error instanceof Error) {
-			// 		res.status(400).json({ success: false, error: error.message });
-			// 	}
-			// }
-			// break;
 		}
 
 		case 'POST': {

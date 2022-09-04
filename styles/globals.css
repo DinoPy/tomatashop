@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Julee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
 
 html,
 body {
@@ -8,17 +9,14 @@ body {
 	--log-out-icon: white;
 
 	min-height: 100vh;
+	position: relative;
 
 	padding: 0;
 	margin: 0;
-	font-family: 'Iris Grover', sans-serif;
+	font-family: 'Inter', sans-serif;
 
 	background-color: var(--bg-color-dark);
 	color: rgba(255, 255, 255, 0.806);
-}
-
-body {
-	padding-bottom: 2em;
 }
 
 a {

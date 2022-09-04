@@ -5,13 +5,18 @@
 
 /* styles for the button */
 .dropdownButton {
-	background-color: rgba(26, 82, 26, 0.679);
-	font-size: 1.4rem;
-	color: whitesmoke;
+	background-image: linear-gradient(
+		180deg,
+		rgb(143, 182, 5),
+		rgba(15, 134, 4, 0.719)
+	);
+	font-size: 1.2rem;
+	color: rgb(255, 255, 255);
 	border: none;
 	cursor: pointer;
-	padding: 0.4em 1.3em;
+	padding: 0.3em 1.1em;
 	border-radius: 5px;
+	margin-left: 1em;
 }
 
 /* customize the dropdown menu, display none and position absolute */
@@ -25,6 +30,7 @@
 	min-width: 120px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
+	margin-left: 1em;
 }
 
 /* styles for the anchors default */

@@ -1,0 +1,13 @@
+.paginationContainer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin: 2em 3em 0;
+
+	list-style: none;
+}
+
+.paginationContainer li {
+	display: inline-block;
+	margin: 0 5px;
+}

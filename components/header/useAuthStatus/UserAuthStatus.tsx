@@ -1,19 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from './Header.module.css';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import signOutIcon from '../../public/images/logout.svg';
-import { icons } from '../images';
+import styles from './UserAuthStatus.module.css';
 
 const UserAuthStatus = () => {
 	// we have signOutIcon that might be of use.
 	const { data: session, status } = useSession();
 	return (
-		<div>
+		<div className={styles.authStatusContainer}>
 			{status === 'authenticated' && session ? (
 				// <Link href='/api/auth/signout'> Sign Out </Link>
 				<>
-					<h2> Signed in as {session.user?.name?.split(" ")[0]}</h2>
+					<h2> Signed in as {session.user?.name?.split(' ')[0]}</h2>
 					<a href='#' onClick={() => signOut()}>
 						Sign out{' '}
 						<Image
