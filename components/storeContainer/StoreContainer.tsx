@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 //types
 import { NextPage } from 'next';
 import {

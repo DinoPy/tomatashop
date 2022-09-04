@@ -1,5 +1,6 @@
 .products {
-	margin: 10em 0 0;
+	width: 1500px;
+	margin: 10em auto 0;
 	gap: 2em;
 	display: flex;
 	flex-wrap: wrap;
