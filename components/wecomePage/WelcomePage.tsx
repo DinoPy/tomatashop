@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './WelcomePage.module.css';
 
 const WelcomePage = () => {
@@ -13,7 +14,9 @@ const WelcomePage = () => {
 						uncommon approaches.
 					</p>
 
-					<button className={styles.heroButton}> Shop Now</button>
+					<Link href='/store'>
+						<a className={styles.heroButton}>Shop Now</a>
+					</Link>
 				</div>
 
 				<Image
