@@ -6,12 +6,23 @@ import styles from './UserAuthStatus.module.css';
 const UserAuthStatus = () => {
 	// we have signOutIcon that might be of use.
 	const { data: session, status } = useSession();
+	console.log(session?.user?.image);
 	return (
 		<div className={styles.authStatusContainer}>
 			{status === 'authenticated' && session ? (
 				// <Link href='/api/auth/signout'> Sign Out </Link>
 				<>
-					<h2> Signed in as {session.user?.name?.split(' ')[0]}</h2>
+					<div className={styles.userInfo}>
+						<div className={styles.userImage}>
+							<Image
+								src={session?.user?.image}
+								alt='UserPicture'
+								width='50px'
+								height='50px'
+							/>
+						</div>
+						<h2> Hi, {session.user?.name?.split(' ')[0]}</h2>
+					</div>
 					<a href='#' onClick={() => signOut()}>
 						Sign out{' '}
 						<Image

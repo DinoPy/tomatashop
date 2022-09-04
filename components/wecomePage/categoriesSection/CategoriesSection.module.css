@@ -1,0 +1,9 @@
+.categoriesSection {
+	margin-top: 6em;
+	height: 600px;
+	padding: 0 10em;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

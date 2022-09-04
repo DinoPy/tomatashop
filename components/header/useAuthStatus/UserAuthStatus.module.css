@@ -1,5 +1,25 @@
+.authStatusContainer,
+.userInfo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .authStatusContainer > a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	font-weight: bold;
+}
+
+.userInfo {
+	flex-direction: column;
+	margin-right: 1em;
+}
+
+.userImage {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	overflow: hidden;
 }

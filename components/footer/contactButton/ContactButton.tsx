@@ -15,7 +15,7 @@ const ContactButton: NextPage<contactButtonProps> = ({
 	return (
 		<div className={styles.contactButtonContainer}>
 			<Link href={href}>
-				<a>
+				<a target='_blank'>
 					<IconComponent />
 				</a>
 			</Link>

@@ -34,9 +34,9 @@ const Footer: NextPage = () => {
 			</div>
 			<div className={styles.footer__links}>
 				<Link href='/'> Info </Link>
-				&middot;
+				<span className={styles.middot}>&middot;</span>
 				<Link href='/'> Contact Me </Link>
-				&middot;
+				<span className={styles.middot}>&middot;</span>
 				<Link href='/'> Newletter </Link>
 				<br />
 			</div>

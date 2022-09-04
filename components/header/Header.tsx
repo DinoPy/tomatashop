@@ -12,7 +12,7 @@ const Header = () => {
 			<Link href='/'>
 				<a className={styles.logo}>
 					<Image
-						src='/images/1.svg'
+						src='/images/1-transparent.svg'
 						alt='yok tomato logo'
 						width={250}
 						height={50}

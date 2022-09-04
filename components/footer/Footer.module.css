@@ -46,4 +46,7 @@
 	text-transform: capitalize;
 	color: white;
 	font-size: 1.5rem;
+	overflow: hidden;
+	display: flex;
+	gap: 0.5em;
 }

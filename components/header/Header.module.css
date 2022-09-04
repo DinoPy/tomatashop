@@ -17,4 +17,10 @@
 .logo {
 	font-family: 'Julee', sans-serif;
 	font-size: 3rem;
+	transition: all 0.2s ease-in-out;
+}
+
+.logo:hover,
+.logo:focus {
+	transform: scale(1.05);
 }
