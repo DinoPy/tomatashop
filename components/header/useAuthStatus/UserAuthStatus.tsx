@@ -6,7 +6,7 @@ import styles from './UserAuthStatus.module.css';
 const UserAuthStatus = () => {
 	// we have signOutIcon that might be of use.
 	const { data: session, status } = useSession();
-	console.log(session?.user?.image);
+	const userUrl = session?.user?.image || '/images/user-repl.png';
 	return (
 		<div className={styles.authStatusContainer}>
 			{status === 'authenticated' && session ? (
@@ -15,7 +15,7 @@ const UserAuthStatus = () => {
 					<div className={styles.userInfo}>
 						<div className={styles.userImage}>
 							<Image
-								src={session?.user?.image}
+								src={userUrl}
 								alt='UserPicture'
 								width='50px'
 								height='50px'
