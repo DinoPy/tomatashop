@@ -1,0 +1,30 @@
+.eshopSection {
+	margin-top: 6em;
+	height: 600px;
+	padding: 0 10em;
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.06);
+	display: grid;
+	grid-template: 150px/ 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	padding: 10em;
+	gap: 5em;
+}
+
+.eshopLogo > div {
+	height: 100%;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.eshopLogo > div:hover {
+	transform: scale(1.1);
+	color: rgba(255, 255, 255, 0.788);
+}
+
+.eshopLogo:last-child {
+	grid-column: span 2;
+	justify-self: center;
+	width: 65%;
+}

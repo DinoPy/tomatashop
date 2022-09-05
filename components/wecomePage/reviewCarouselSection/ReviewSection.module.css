@@ -1,0 +1,88 @@
+.reviewSection {
+	margin-top: 6em;
+	padding: 0 10em;
+	height: 600px;
+}
+
+.sliderWrapper {
+	margin: 1rem;
+	position: relative;
+}
+
+.slidesContainer {
+	height: calc(600px - 2rem);
+	width: 100%;
+	display: flex;
+	overflow: scroll;
+	scroll-behavior: smooth;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+.slideArrow {
+	position: absolute;
+	z-index: 2;
+	display: flex;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	height: 4rem;
+	background-color: white;
+	border: none;
+	width: 2rem;
+	font-size: 3rem;
+	padding: 0;
+	cursor: pointer;
+	opacity: 0.5;
+	transition: opacity 100ms;
+}
+
+.slideArrow:hover,
+.slideArrow:focus {
+	opacity: 1;
+}
+
+.slideArrowPrev {
+	left: 0;
+	padding-left: 0.25rem;
+	border-radius: 0 2rem 2rem 0;
+}
+
+.slideArrowNext {
+	right: 0;
+	padding-left: 0.75rem;
+	border-radius: 2rem 0 0 2rem;
+}
+
+.slide {
+	width: 100%;
+	height: 100%;
+	flex: 1 0 100%;
+}
+
+.reviewContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	gap: 1.5em;
+}
+
+.reviewContainer img {
+	border-radius: 50%;
+}
+
+.reviewTitle {
+	font-size: 3rem;
+	font-weight: 600;
+}
+
+.reviewBody {
+	font-size: 1.5rem;
+	font-weight: 400;
+	max-width: 800px;
+}

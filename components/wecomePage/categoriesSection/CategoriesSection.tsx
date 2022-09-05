@@ -33,32 +33,32 @@ const CategoriesSection: React.FC = () => {
 			<CategoryComponent
 				title='Paintings'
 				description={placeholderDescriptionText}
-				href='/painting'
+				href='painting'
 			/>
 			<CategoryComponent
 				title='Sketches'
 				description={placeholderDescriptionText}
-				href='/sketch'
+				href='sketch'
 			/>
 			<CategoryComponent
 				title='Illustrations'
 				description={placeholderDescriptionText}
-				href='/illustration'
+				href='illustration'
 			/>
 			<CategoryComponent
 				title='Calendars'
 				description={placeholderDescriptionText}
-				href='/calendar'
+				href='calendar'
 			/>
 			<CategoryComponent
 				title='Covers'
 				description={placeholderDescriptionText}
-				href='/cover'
+				href='cover'
 			/>
 			<CategoryComponent
 				title='Clothing'
 				description={placeholderDescriptionText}
-				href='/clothing'
+				href='clothing'
 			/>
 		</section>
 	);
