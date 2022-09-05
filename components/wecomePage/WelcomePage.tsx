@@ -1,16 +1,15 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './WelcomePage.module.css';
 import HeroSection from './heroSection/HeroSection';
 import SubHeroSection from './subHeroSection/SubHeroSection';
 import CategoriesSection from './categoriesSection/CategoriesSection';
+import { NextPage } from 'next';
 
-const WelcomePage = () => {
+const WelcomePage: NextPage = () => {
 	return (
 		<>
 			{' '}
 			<HeroSection />
-			<SubHeroSection /> <CategoriesSection />
+			<SubHeroSection />
+			<CategoriesSection />
 		</>
 	);
 };

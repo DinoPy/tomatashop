@@ -17,10 +17,14 @@ const SubHeroSection = () => {
 				<h2 className={styles.subHeroTitle}>About the author</h2>
 				<p className={styles.subHeroText}>
 					{' '}
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-					quae. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Quisquam, quae. Lorem ipsum dolor sit amet consectetur adipisicing
-					elit. Quisquam,
+					From a royal family of the ancient kingdom of Tomatia, the author was
+					born as a parrot trained to fight the evil using his legendary katana
+					and indistructible armor. Through his travels he met a young phoenix
+					who was attacked by the humans.. With might he has swang his weapon
+					and cut the humans in half. The phoenix was grateful and they became
+					friends. The phoenix taught him the ways of the magic and the author
+					became a master of the sword and magic. After a mighty aventure of a
+					life time the author started putting down his adventures in paintings.
 				</p>
 			</div>
 		</section>

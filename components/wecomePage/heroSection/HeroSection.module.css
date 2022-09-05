@@ -37,7 +37,7 @@
 	text-align: center;
 }
 
-.heroButton {
+/* .heroButton {
 	font-size: 2rem;
 	padding: 0.3em 1.2em;
 	border-radius: 0.5rem;
@@ -47,11 +47,26 @@
 	text-shadow: 0 0 1px black;
 	cursor: pointer;
 	display: inline-block;
-	margin: 1.5em auto 0;
-	transition: all 200ms ease-in-out;
-}
+} */
 
 .heroButton:hover {
 	color: inherit;
 	background-color: #000000;
+}
+
+.heroButton {
+	background-image: linear-gradient(
+		180deg,
+		rgb(143, 182, 5),
+		rgba(15, 134, 4, 0.719)
+	);
+	font-size: 2rem;
+	color: rgb(255, 255, 255);
+	border: none;
+	cursor: pointer;
+	padding: 0.3em 1.3em;
+	border-radius: 5px;
+	display: inline-block;
+	margin: 1.5em auto 0;
+	transition: all 200ms ease-in-out;
 }
