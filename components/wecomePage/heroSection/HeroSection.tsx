@@ -7,7 +7,10 @@ const HeroSection = () => {
 	return (
 		<section className={styles.heroSection}>
 			<div className={styles.leftHeroSection}>
-				<h1 className={styles.heroTitle}> Welcome to Tomata Art Store</h1>
+				<h1 className={styles.heroTitle}>
+					{' '}
+					Yok Tomatia Art <br /> Portofolio{' '}
+				</h1>
 				<p className={styles.heroDescription}>
 					When the world is in chaos, art is the only thing that can save us. Do
 					focus on the art you see and allow yourself to be emersed into another
