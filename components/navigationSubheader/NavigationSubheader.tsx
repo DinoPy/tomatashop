@@ -1,18 +1,22 @@
-import React from 'react';
-import { NextPage } from 'next';
+import React, { Dispatch, SetStateAction } from 'react';
 import Image from 'next/image';
 import CategoryDropdown from './CategoryDropdown/CategoryDropdown';
 import styles from './NavigationSubheader.module.css';
 import { throttle } from '../../utils/throttle';
 import axios from 'axios';
 import Link from 'next/link';
+import { Badge } from '@mui/material';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 type PropsType = {
 	inputValue: string;
 	handleSearch: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-const SearchBox: NextPage = () => {
+const SearchBox: React.FC<{
+	setSidebarOpen: Dispatch<SetStateAction<boolean>>;
+}> = ({ setSidebarOpen }) => {
 	const [toSearch, setToSearch] = React.useState('');
 	const [inputValue, setInputValue] = React.useState('');
 	const [searchResults, setSearchResults] = React.useState<
@@ -40,7 +44,6 @@ const SearchBox: NextPage = () => {
 	React.useEffect(() => {
 		if (toSearch.length > 2) {
 			search(toSearch);
-			console.log(searchResults);
 		}
 
 		return () => {};
@@ -89,8 +92,24 @@ const SearchBox: NextPage = () => {
 				</div>
 			</div>
 			<div>
-				<p> Favorites </p>
-				<p> Cart </p>
+				<Badge
+					badgeContent={1}
+					color='info'
+					sx={{ margin: '0 10px', cursor: 'pointer' }}
+					onClick={() => {
+						setSidebarOpen(true);
+					}}
+				>
+					<ShoppingCartOutlinedIcon />
+				</Badge>
+				<Badge
+					badgeContent={1}
+					color='info'
+					onClick={() => {}}
+					sx={{ margin: '0 10px', cursor: 'pointer' }}
+				>
+					<FavoriteBorderOutlinedIcon />
+				</Badge>
 			</div>
 		</div>
 	);
