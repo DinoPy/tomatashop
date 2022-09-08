@@ -14,6 +14,7 @@ const ProductItem: NextPage<{ product: Product }> = ({ product }) => {
 						<Image
 							width='200px'
 							height='200px'
+							layout='intrinsic'
 							src={product.image}
 							alt={product.title}
 							blurDataURL={product.image}

@@ -16,8 +16,9 @@ const Footer: NextPage = () => {
 				<Image
 					src='/images/footer_logo.png'
 					alt='yok tomatia logo'
-					width={200}
-					height={200}
+					width='100%'
+					height='100%'
+					layout='fill'
 				/>
 			</div>
 

@@ -1,7 +1,8 @@
 .eshopSection {
 	margin-top: 6em;
-	height: 600px;
-	padding: 0 10em;
+	min-height: 600px;
+	height: fit-content;
+	padding: 0 10%;
 	position: relative;
 	background-color: rgba(255, 255, 255, 0.06);
 	display: grid;

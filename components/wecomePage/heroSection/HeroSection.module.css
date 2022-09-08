@@ -4,8 +4,9 @@
 	gap: 6em;
 
 	justify-content: space-between;
-	height: 600px;
-	padding: 0 10em;
+	min-height: 500px;
+	max-height: fit-content;
+	padding: 0 10%;
 }
 
 .heroSection > div {
@@ -21,6 +22,7 @@
 .heroImage {
 	border: 1px solid red;
 	border-radius: 10px;
+	object-fit: contain;
 }
 
 .heroTitle {

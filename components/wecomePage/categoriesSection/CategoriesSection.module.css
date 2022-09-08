@@ -1,11 +1,11 @@
 .categoriesSection {
 	margin-top: 6em;
-	padding: 0 10em;
+	padding: 0 10%;
 	position: relative;
 
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 50px 200px 200px 200px;
+	grid-template-rows: 50px 1fr 1fr 1fr;
 	gap: 5em;
 }
 

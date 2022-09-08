@@ -1,7 +1,8 @@
 .reviewSection {
 	margin-top: 6em;
-	padding: 0 10em;
-	height: 600px;
+	padding: 0 10%;
+	min-height: 500px;
+	height: fit-content;
 }
 
 .sliderWrapper {
