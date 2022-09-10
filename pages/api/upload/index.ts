@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import AWS from 'aws-sdk';
 
 const s3 = new AWS.S3({
-	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-	region: process.env.AWS_REGION,
+	accessKeyId: process.env.S3_KEY,
+	secretAccessKey: process.env.S3_SECRET,
+	region: process.env.S3_REGION,
 });
 
 export default async function handler(
