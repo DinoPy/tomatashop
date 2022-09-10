@@ -4,10 +4,8 @@ import { useState } from 'react';
 import Footer from '../components/footer/Footer';
 import Header from '../components/header/Header';
 import NavigationSubheader from '../components/navigationSubheader/NavigationSubheader';
-import Sidebar from '../components/CartSidebar/CartSidebar';
 import WelcomePage from '../components/wecomePage/WelcomePage';
 import React from 'react';
-import { Drawer, Box } from '@mui/material';
 
 const Home: NextPage = () => {
 	return (
@@ -17,11 +15,10 @@ const Home: NextPage = () => {
 				<meta name='description' content='Yok Tomata Shop' />
 				<link rel='shortcut icon' href='/android-chrome-512x512.png' />
 			</Head>
-			<Header />
 
+			<Header />
 			<NavigationSubheader />
 			<WelcomePage />
-
 			<Footer />
 		</>
 	);

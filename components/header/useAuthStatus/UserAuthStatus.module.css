@@ -5,6 +5,12 @@
 	align-items: center;
 }
 
+@media (max-width: 768px) {
+	.userInfo {
+		display: none;
+	}
+}
+
 .authStatusContainer > a {
 	display: flex;
 	align-items: center;
@@ -18,7 +24,7 @@
 }
 
 .userImage {
-	width: 50px;
+	width: min(70%, 50px);
 	height: 50px;
 	border-radius: 50%;
 	overflow: hidden;

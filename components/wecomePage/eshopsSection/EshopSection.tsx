@@ -3,6 +3,7 @@ import styles from './EshopSection.module.css';
 import DesignByHuman from '../../logoIcons/DesignByHumans/DesignByHumans';
 import Redbubble from '../../logoIcons/Redbubble/Redbubble';
 import Inprnt from '../../logoIcons/Inprnt/Inprnt';
+import { style } from '@mui/system';
 
 interface EshopSectionProps {
 	LogoComponent: React.FC;

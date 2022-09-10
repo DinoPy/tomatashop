@@ -4,6 +4,7 @@
 	justify-content: space-around;
 	align-items: center;
 	padding: 0.5em;
+	gap: 2em;
 	margin: 0 0;
 	background-color: var(--primary-color);
 }
@@ -19,7 +20,7 @@
 
 .searchButton {
 	border: none;
-	width: 60px;
+	width: min(60px, 10vw);
 	height: 32px;
 	background-color: #252525db;
 	cursor: pointer;
@@ -30,6 +31,7 @@
 .inputBox {
 	height: 30px;
 	width: 100%;
+	min-width: 100px;
 	border: none;
 
 	color: gray;
@@ -60,4 +62,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+@media screen and (max-width: 700px) {
 }

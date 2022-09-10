@@ -5,13 +5,14 @@
 
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 50px 1fr 1fr 1fr;
-	gap: 5em;
+	grid-template-rows: min(3rem, 50px) 1fr 1fr 1fr 100px;
+	gap: 5%;
+	height: fit-content;
 }
 
 .sectionTitle {
 	grid-column: span 2;
-	font-size: 3rem;
+	font-size: 2.5rem;
 	color: whitesmoke;
 }
 
@@ -23,7 +24,7 @@
 }
 
 .categoryText {
-	font-size: 1rem;
+	font-size: clamp(0.8rem, 1.5vw, 1rem);
 	color: #fff;
 	margin-bottom: 1em;
 }
@@ -46,4 +47,12 @@
 .categoryLeadbutton:focus {
 	background-color: black;
 	color: inherit;
+}
+
+@media screen and (max-width: 700px) {
+	.categoriesSection {
+		padding: 0 5%;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: min(3rem, 50px) 1fr 1fr 1fr 100px;
+	}
 }

@@ -14,8 +14,9 @@ const Header = () => {
 					<Image
 						src='/images/1-transparent.svg'
 						alt='yok tomato logo'
-						width={250}
-						height={50}
+						width='100%'
+						height='100%'
+						layout='responsive'
 					/>
 				</a>
 			</Link>

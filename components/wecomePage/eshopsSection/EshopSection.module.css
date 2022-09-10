@@ -15,6 +15,7 @@
 
 .eshopLogo > div {
 	height: 100%;
+	min-width: 180px;
 	cursor: pointer;
 	transition: all 0.3s ease-in-out;
 }
@@ -28,4 +29,22 @@
 	grid-column: span 2;
 	justify-self: center;
 	width: 65%;
+}
+
+@media screen and (max-width: 700px) {
+	.eshopSection {
+		grid-template: 150px/ 1fr;
+		padding: 0 10%;
+		gap: 0;
+		min-height: 450px;
+	}
+
+	.eshopLogo:last-child {
+		grid-column: span 1;
+		width: 100%;
+	}
+
+	.eshopLogo:first-child {
+		margin: 0 auto;
+	}
 }

@@ -3,10 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
 
+html {
+	font-size: clamp(14px, 0.5rem + 1vw, 20px);
+}
+
 html,
 body {
 	--bg-color-dark: #252525;
 	--primary-color: #a8c85e;
+	--global-paragraph-size: clamp(1rem, 0.5rem + 1vw, 1.2rem);
+	--global-title-size: 2.5rem;
 
 	min-height: 100vh;
 	position: relative;
@@ -46,11 +52,10 @@ h5,
 h6 {
 	margin: 0;
 	padding: 0;
-	line-height: 1.6;
 }
 
 ::-webkit-scrollbar {
-	width: 0.7em;
+	width: 0.5rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -58,7 +63,8 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: rgba(138, 137, 137, 0.5);
+	background: rgba(138, 137, 137, 0.397);
+	border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

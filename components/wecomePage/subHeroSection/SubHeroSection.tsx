@@ -13,8 +13,8 @@ const SubHeroSection = () => {
 					height='400px'
 				/>
 			</div>
-			<div>
-				<h2 className={styles.subHeroTitle}>About the author</h2>
+			<div className={styles.subArticle}>
+				<h2 className={styles.subHeroTitle}>About the artist</h2>
 				<p className={styles.subHeroText}>
 					{' '}
 					From a royal family of the ancient kingdom of Tomatia, the author was

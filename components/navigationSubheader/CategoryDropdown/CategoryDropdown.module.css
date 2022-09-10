@@ -10,13 +10,12 @@
 		rgb(143, 182, 5),
 		rgba(15, 134, 4, 0.719)
 	);
-	font-size: 1.2rem;
+	font-size: clamp(0.8rem, 1.5vw, 1.2rem);
 	color: rgb(255, 255, 255);
 	border: none;
 	cursor: pointer;
 	padding: 0.3em 1.1em;
 	border-radius: 5px;
-	margin-left: 1em;
 }
 
 /* customize the dropdown menu, display none and position absolute */
@@ -27,16 +26,18 @@
 	position: absolute;
 	top: 100%;
 	background-color: #252525;
-	min-width: 120px;
+
+	width: 100%;
+	min-width: fit-content;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	margin-left: 1em;
 }
 
 /* styles for the anchors default */
 .dropdownContent a {
 	color: white;
-	padding: 12px 16px;
+	font-size: 0.8rem;
+	padding: 5% 10%;
 	text-decoration: none;
 	display: block;
 }

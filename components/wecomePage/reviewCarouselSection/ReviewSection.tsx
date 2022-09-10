@@ -6,7 +6,13 @@ const Review: React.FC = () => {
 	return (
 		<li className={styles.slide}>
 			<div className={styles.reviewContainer}>
-				<Image src='/images/user-repl.png' width='150px' height='150px' />
+				<Image
+					src='https://tomatastore.s3.eu-central-1.amazonaws.com/idtest/8aba091f-a210-4669-bc6c-c013185c10a6.png'
+					width='200px'
+					height='200px'
+					alt='Image of an user'
+					style={{ objectFit: 'cover' }}
+				/>
 				<h1 className={styles.reviewTitle}> Very cool shizen :O !!!</h1>
 				<p className={styles.reviewBody}>
 					{' '}
