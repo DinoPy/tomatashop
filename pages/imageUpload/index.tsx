@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FileUploadTest: React.FC = () => {
-	const [file, setFile] = React.useState({ file: null });
+	const [file, setFile] = React.useState<{ file: null | File }>({ file: null });
 	const [imageUploadUrl, setImageUploadUrl] = React.useState('');
 
 	const onFileChange = (event: any) => {
@@ -11,24 +11,26 @@ const FileUploadTest: React.FC = () => {
 	};
 
 	React.useEffect(() => {
-		console.log(file);
+		console.log(typeof file.file);
 
 		if (imageUploadUrl.length > 0) {
 			fetch(imageUploadUrl, {
-				method: 'POST',
+				method: 'PUT',
 				headers: {
-					'Content-Type': 'application/json',
+					'Content-Type': file.file!.type,
 				},
-				// body: file,
+				body: file.file,
 			})
 				.then((response) => {
-					console.log(response.json());
+					console.log(response);
+					setImageUploadUrl('');
 				})
 				.catch((e) => {
 					console.log(e);
 				});
 		}
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [imageUploadUrl]);
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-
+import { v4 as uuidv4 } from 'uuid';
 import AWS from 'aws-sdk';
 
 const s3 = new AWS.S3({
@@ -14,17 +14,21 @@ export default async function handler(
 ) {
 	console.log(req.body);
 	if (req.method === 'POST') {
+		const key = `${'idtest'}/${uuidv4()}.png`;
 		const s3Params = {
 			Bucket: 'tomatastore',
-			Key: 'test',
+			// the id of the user should be received from the front end.
+			Key: key,
 			ContentType: 'image/jpeg',
 		};
 
 		s3.getSignedUrl('putObject', s3Params, (err, url) => {
 			console.log(url);
 			console.log(err);
-			return res.status(200).json({ url });
+			return res.status(200).json({ url, key });
 		});
+
+		// s3.delete
 		// const command = new PutObjectCommand(s3Params);
 		// const signedUrl = await getSignedUrl(s3Client, command, {
 		// 	expiresIn: 60 * 60 * 24,
