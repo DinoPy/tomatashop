@@ -10,6 +10,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import CartSidebar from '../CartSidebar/CartSidebar';
 import FavoritesSidebar from '../FavoritesSidebar/FavoritesSidebar';
+import { useSession } from 'next-auth/react';
 
 type PropsType = {
 	inputValue: string;
@@ -21,6 +22,7 @@ const SearchBox: React.FC = () => {
 	const [favoritesSidebarOpen, setFavoritesSidebarOpen] = React.useState(false);
 	const [toSearch, setToSearch] = React.useState('');
 	const [inputValue, setInputValue] = React.useState('');
+	const { data: session } = useSession();
 	const [searchResults, setSearchResults] = React.useState<
 		{
 			_id: string;
@@ -32,7 +34,6 @@ const SearchBox: React.FC = () => {
 	const search = async (value: string) => {
 		const results = await axios.get(`/api/products?query=${value}`);
 		const { data } = await results;
-		console.log(data.data);
 		setSearchResults(data.data);
 	};
 
@@ -108,7 +109,7 @@ const SearchBox: React.FC = () => {
 						<ShoppingCartOutlinedIcon />
 					</Badge>
 					<Badge
-						badgeContent={1}
+						badgeContent={session?.user?.favorites?.length}
 						color='info'
 						sx={{ margin: '0 10px', cursor: 'pointer' }}
 						onClick={() => {

@@ -32,7 +32,6 @@ export function throttleFunction(cb: any, delay = 250) {
 
 	return function (...args: any) {
 		const now = Date.now();
-		console.log(prev - now);
 		if (now - prev > delay) {
 			prev = now;
 			cb(...args);

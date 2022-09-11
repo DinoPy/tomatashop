@@ -1,12 +1,25 @@
-/* .sidebarContainer {
-	position: fixed;
-	background-color: #302f2f;
-	width: 300px;
-	height: 100%;
-	right: 0;
-	z-index: 100;
-	box-shadow: -5px 0px 5px rgba(37, 37, 37, 0.4),
-		-10px 0px 10px rgba(37, 37, 37, 0.205);
-	transition: all 0.5s ease;
-	padding-top: 1em;
-} */
+.lineItemContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10%;
+	padding: 0.5em;
+	/* border: 1px red solid; */
+
+	position: relative;
+}
+
+.title {
+	font-size: 0.8rem;
+	width: 70%;
+	cursor: pointer;
+}
+
+.imageContaienr {
+	width: 70px;
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+}

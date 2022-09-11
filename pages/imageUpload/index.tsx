@@ -11,8 +11,6 @@ const FileUploadTest: React.FC = () => {
 	};
 
 	React.useEffect(() => {
-		console.log(typeof file.file);
-
 		if (imageUploadUrl.length > 0) {
 			fetch(imageUploadUrl, {
 				method: 'PUT',
@@ -22,12 +20,9 @@ const FileUploadTest: React.FC = () => {
 				body: file.file,
 			})
 				.then((response) => {
-					console.log(response);
 					setImageUploadUrl('');
 				})
-				.catch((e) => {
-					console.log(e);
-				});
+				.catch((e) => {});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [imageUploadUrl]);

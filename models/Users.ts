@@ -6,6 +6,8 @@ export interface UserInterface {
 	email: string;
 	images: string[];
 	orders: Schema.Types.ObjectId[];
+	favorites: Schema.Types.ObjectId[];
+	cart: Schema.Types.ObjectId[];
 }
 
 const UserSchema = new Schema<UserInterface>(
@@ -15,8 +17,10 @@ const UserSchema = new Schema<UserInterface>(
 		email: { type: String, required: true, unique: true },
 		images: { type: [String], required: true },
 		orders: { type: [Schema.Types.ObjectId], ref: 'Orders' },
+		favorites: { type: [Schema.Types.ObjectId], ref: 'Products' },
+		cart: { type: [Schema.Types.ObjectId], ref: 'Products' },
 	},
-	{ timestamps: true }
+	{ timestamps: true, toJSON: { virtuals: true } }
 );
 
 export default models.Users || model<UserInterface>('Users', UserSchema);

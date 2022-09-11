@@ -31,6 +31,8 @@ export default NextAuth({
 						name: user.name,
 						images: [user.image],
 						orders: [],
+						cart: [],
+						favorites: [],
 					});
 					await newUser.save();
 				}
@@ -41,9 +43,17 @@ export default NextAuth({
 			return true;
 		},
 		async jwt({ token, user }) {
-			if (user) {
-				token.user = user;
-			}
+			try {
+				const foundUser = await User.findOne({
+					email: token.email,
+				});
+				if (foundUser) {
+					token.user = foundUser;
+				} else {
+					token.user = user;
+				}
+			} catch (error) {}
+
 			return token;
 		},
 

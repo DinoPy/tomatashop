@@ -45,13 +45,11 @@ export default async function handler(
 						{ $project: { title: 1 } },
 					]);
 					if (results) {
-						console.log(results);
 						return res.status(200).json({ message: 'success', data: results });
 					}
 				}
 				res.status(200).json({ message: 'success', data: [] });
 			} catch (error) {
-				console.log(error);
 				res.send([]);
 			}
 		}

@@ -12,7 +12,6 @@ export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-	console.log(req.body);
 	if (req.method === 'POST') {
 		const key = `${'idtest'}/${uuidv4()}.png`;
 		const s3Params = {
@@ -23,8 +22,6 @@ export default async function handler(
 		};
 
 		s3.getSignedUrl('putObject', s3Params, (err, url) => {
-			console.log(url);
-			console.log(err);
 			return res.status(200).json({ url, key });
 		});
 
@@ -33,8 +30,6 @@ export default async function handler(
 		// const signedUrl = await getSignedUrl(s3Client, command, {
 		// 	expiresIn: 60 * 60 * 24,
 		// });
-
-		// console.log(signedUrl);
 	}
 }
 // https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javascriptv3/example_code/s3/src/s3_put_presignedURL.js

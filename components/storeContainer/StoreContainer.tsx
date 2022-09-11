@@ -20,8 +20,6 @@ const MainContainer: NextPage<PropsType> = ({ products, pages }) => {
 	const [productData, setProductData] = useState<Product[]>(products);
 	const [searchResults, setSearchResults] = useState<Product[]>(productData);
 
-	console.log(pages);
-
 	// generating products Jsx from the data received from server.
 	const productsJsx = (itemsList: Product[]): JSX.Element[] =>
 		itemsList?.map((product) => (

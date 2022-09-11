@@ -6,7 +6,8 @@ import styles from './UserAuthStatus.module.css';
 const UserAuthStatus = () => {
 	// we have signOutIcon that might be of use.
 	const { data: session, status } = useSession();
-	const userUrl = session?.user?.image || '/images/user-repl.png';
+	const userUrl = session?.user.images[0] || '/images/user-repl.png';
+
 	return (
 		<div className={styles.authStatusContainer}>
 			{status === 'authenticated' && session ? (

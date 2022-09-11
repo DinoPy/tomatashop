@@ -87,6 +87,14 @@
 	max-width: 800px;
 }
 
+.reviewImageContainer {
+	width: 250px;
+	height: 250px;
+	object-fit: contain;
+	position: relative;
+	overflow: hidden;
+}
+
 @media screen and (max-width: 700px) {
 	.reviewSection {
 		padding: 0;
