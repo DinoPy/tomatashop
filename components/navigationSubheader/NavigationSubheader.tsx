@@ -38,6 +38,8 @@ const SearchBox: React.FC = () => {
 
 	// useCallback will memoize the function and prevent it being generated every time the component is rendered
 	// hence it will be unique and will work correctly
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const throttleSearch = React.useCallback(
 		throttle((val: any) => setToSearch(val), 1000),
 		[]
