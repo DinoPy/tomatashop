@@ -53,7 +53,9 @@ const FavoritesSidebar: React.FC<{
 			setFavorites(response.data[0]?.favorites);
 		}
 
-		fetchFavorites();
+		if (session) {
+			fetchFavorites();
+		}
 		console.log(favorites);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
