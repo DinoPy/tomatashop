@@ -14,6 +14,7 @@ const favContainerStyles = {
 	backgroundColor: 'rgba(1,0,0,0.5)',
 	padding: '10px',
 };
+//
 
 export interface FavoritesProps {
 	favorites:
