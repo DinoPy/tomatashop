@@ -9,19 +9,18 @@ export default async function handler(
 ) {
 	const { type, action, userId, productId } = req.query;
 
+	try {
+		await dbConnect();
+	} catch (error) {
+		if (error instanceof Error) {
+			return res.status(500).json({ message: error.message });
+		}
+	}
 	switch (req.method) {
 		case 'GET': {
 			res.status(200).json(req.query);
 		}
 		case 'POST': {
-			try {
-				await dbConnect();
-			} catch (error) {
-				if (error instanceof Error) {
-					return res.status(500).json({ message: error.message });
-				}
-			}
-
 			if (action === 'add') {
 				try {
 					console.log('add reached');

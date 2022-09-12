@@ -4,6 +4,7 @@ import { NextPage } from 'next';
 import { Product } from '../../types/interface/productPropsInterface';
 import ProductItem from '../../components/productItem/ProductItem';
 import Layout from '../../components/layout';
+import dbConnect from '../../lib/dbConnect';
 
 const Category: NextPage<{ products: Product[] }> = ({ products }) => {
 	const getProductJsx = (products: Product[]): JSX.Element[] =>
@@ -27,6 +28,7 @@ export async function getServerSideProps(context: any) {
 	const category = context.params.category;
 
 	try {
+		await dbConnect();
 		const products = await Products.find({ category: category });
 		return {
 			props: {

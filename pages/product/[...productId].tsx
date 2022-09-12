@@ -6,6 +6,7 @@ import { Product } from '../../types/interface/productPropsInterface';
 import Products from '../../models/Products';
 import NavigationSubheader from '../../components/navigationSubheader/NavigationSubheader';
 import Layout from '../../components/layout';
+import dbConnect from '../../lib/dbConnect';
 
 const ProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	return (
@@ -23,6 +24,7 @@ export async function getServerSideProps(context: any) {
 	const productId = context.params.productId;
 
 	try {
+		await dbConnect();
 		const product = await Products.findById(productId);
 		return {
 			props: {
