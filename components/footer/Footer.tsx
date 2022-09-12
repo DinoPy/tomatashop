@@ -29,7 +29,10 @@ const Footer: NextPage = () => {
 					href='https://www.deviantart.com/yoktomato'
 					IconComponent={Deviant}
 				/>
-				<ContactButton href='' IconComponent={Patreon} />
+				<ContactButton
+					href='https://www.patreon.com/YokTomato'
+					IconComponent={Patreon}
+				/>
 			</div>
 			<div className={styles.footer__links}>
 				<Link href='/'> Info </Link>

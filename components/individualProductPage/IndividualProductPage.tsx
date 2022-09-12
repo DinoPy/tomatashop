@@ -5,7 +5,8 @@ import { NextPage } from 'next';
 import { Product } from '../../types/interface/productPropsInterface';
 import { useSession } from 'next-auth/react';
 import { Checkbox } from '@mui/material';
-import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 import { useFavCtx } from '../../utils/favCtx';
 
 const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
@@ -55,8 +56,8 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 			{session && (
 				<Checkbox
 					aria-label='Favorited'
-					icon={<FavoriteBorder />}
-					checkedIcon={<Favorite />}
+					icon={<StarBorderIcon />}
+					checkedIcon={<StarIcon />}
 					checked={favorites.some((item) => item._id === product._id)}
 					onChange={() => handleChange()}
 					sx={{

@@ -7,7 +7,8 @@ import Link from 'next/link';
 import { throttle } from '../../utils/throttle';
 import { Badge } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+
 import CategoryDropdown from './CategoryDropdown/CategoryDropdown';
 import CartSidebar from '../CartSidebar/CartSidebar';
 import FavoritesSidebar from '../FavoritesSidebar/FavoritesSidebar';
@@ -129,7 +130,7 @@ const NavigationSubheader: React.FC = () => {
 							setFavoritesSidebarOpen(true);
 						}}
 					>
-						<FavoriteBorderOutlinedIcon />
+						<StarBorderIcon />
 					</Badge>
 				</div>
 			</div>
