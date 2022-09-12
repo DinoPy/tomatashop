@@ -13,7 +13,7 @@ const ProductSchema = new mongoose.Schema<Product>(
 			count: { type: Number, required: true },
 		},
 	},
-	{ timestamps: true }
+	{ timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
 export default mongoose.models.Products ||

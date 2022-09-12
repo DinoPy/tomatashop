@@ -1,10 +1,8 @@
 import { NextPage } from 'next';
 import React from 'react';
-import Header from '../../components/header/Header';
 import IndividualProductPage from '../../components/individualProductPage/IndividualProductPage';
 import { Product } from '../../types/interface/productPropsInterface';
 import Products from '../../models/Products';
-import NavigationSubheader from '../../components/navigationSubheader/NavigationSubheader';
 import Layout from '../../components/layout';
 import dbConnect from '../../lib/dbConnect';
 
@@ -32,6 +30,7 @@ export async function getServerSideProps(context: any) {
 			},
 		};
 	} catch (error) {
+		console.error(error);
 		return {
 			props: {
 				// error: error.message,

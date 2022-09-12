@@ -44,6 +44,7 @@ export default NextAuth({
 		},
 		async jwt({ token, user }) {
 			try {
+				await dbConnect();
 				const foundUser = await User.findOne({
 					email: token.email,
 				});

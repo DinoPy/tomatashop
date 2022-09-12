@@ -20,7 +20,7 @@ const UserSchema = new Schema<UserInterface>(
 		favorites: { type: [Schema.Types.ObjectId], ref: 'Products' },
 		cart: { type: [Schema.Types.ObjectId], ref: 'Products' },
 	},
-	{ timestamps: true }
+	{ timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
 export default models.Users || model<UserInterface>('Users', UserSchema);

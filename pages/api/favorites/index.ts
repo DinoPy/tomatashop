@@ -15,7 +15,7 @@ export default async function handler(
 				const items = await Users.find({ email: req.body.email }).populate(
 					'favorites'
 				);
-				console.log(items);
+
 				res.status(200).json(items);
 			} catch (error) {
 				if (error instanceof Error) {

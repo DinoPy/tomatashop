@@ -39,6 +39,7 @@ export async function getServerSideProps({ query }: any) {
 			},
 		};
 	} catch (error) {
+		console.error(error);
 		return {
 			props: {
 				products: [],

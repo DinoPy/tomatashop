@@ -42,7 +42,7 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 				}
 			).then(async (response) => {
 				const data = await response.json();
-				console.log(data);
+
 				if (response.status === 200) {
 					setFavorites(data.favorites);
 				}
