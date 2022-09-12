@@ -1,40 +1,31 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { v4 as uuidv4 } from 'uuid';
+import AWS from 'aws-sdk';
+
+const s3 = new AWS.S3({
+	accessKeyId: process.env.S3_KEY,
+	secretAccessKey: process.env.S3_SECRET,
+	region: process.env.S3_REGION,
+});
 
 export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-	res.send('Hello World');
+	if (req.method === 'POST') {
+		const key = `${'idtest'}/${uuidv4()}.png`;
+		const s3Params = {
+			Bucket: 'tomatastore',
+			// the id of the user should be received from the front end.
+			Key: key,
+			ContentType: 'image/jpeg',
+		};
+
+		s3.getSignedUrl('putObject', s3Params, (err, url) => {
+			return res.status(200).json({ url, key });
+		});
+	}
 }
-
-// import { v4 as uuidv4 } from 'uuid';
-// import AWS from 'aws-sdk';
-
-// const s3 = new AWS.S3({
-// 	accessKeyId: process.env.S3_KEY,
-// 	secretAccessKey: process.env.S3_SECRET,
-// 	region: process.env.S3_REGION,
-// });
-
-// export default async function handler(
-// 	req: NextApiRequest,
-// 	res: NextApiResponse
-// ) {
-// 	if (req.method === 'POST') {
-// 		const key = `${'idtest'}/${uuidv4()}.png`;
-// 		const s3Params = {
-// 			Bucket: 'tomatastore',
-// 			// the id of the user should be received from the front end.
-// 			Key: key,
-// 			ContentType: 'image/jpeg',
-// 		};
-
-// 		s3.getSignedUrl('putObject', s3Params, (err, url) => {
-// 			return res.status(200).json({ url, key });
-// 		});
-
-// 	}
-// }
 
 // s3.delete
 // const command = new PutObjectCommand(s3Params);
