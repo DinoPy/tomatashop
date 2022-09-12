@@ -1,12 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Footer from '../components/footer/Footer';
-import Header from '../components/header/Header';
-import NavigationSubheader from '../components/navigationSubheader/NavigationSubheader';
 import WelcomePage from '../components/wecomePage/WelcomePage';
 import React from 'react';
-import { Fab } from '@mui/material';
-import NavigationIcon from '@mui/icons-material/Navigation';
+import Layout from '../components/layout';
 
 const Home: NextPage = () => {
 	// const [scrollYOffset, setScrollYOffset] = React.useState(0);
@@ -61,29 +57,10 @@ const Home: NextPage = () => {
 						  }
 				}
 			> */}
-			<Header />
-			<NavigationSubheader />
-			{/* </div> */}
-			<WelcomePage />
-			<Footer />
-			<Fab
-				variant='extended'
-				sx={{
-					position: 'fixed',
-					bottom: '3%',
-					right: '3%',
-					bgcolor: 'grey.800',
-					color: 'white',
-					padding: '.5rem .5rem',
-					'&:hover': {
-						bgcolor: 'grey.700',
-					},
-				}}
-			>
-				<a href='#home'>
-					<NavigationIcon />
-				</a>
-			</Fab>
+			<Layout>
+				{/* </div> */}
+				<WelcomePage />
+			</Layout>
 		</>
 	);
 };

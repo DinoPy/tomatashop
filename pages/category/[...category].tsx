@@ -3,8 +3,7 @@ import Products from '../../models/Products';
 import { NextPage } from 'next';
 import { Product } from '../../types/interface/productPropsInterface';
 import ProductItem from '../../components/productItem/ProductItem';
-import Header from '../../components/header/Header';
-import SearchBox from '../../components/navigationSubheader/NavigationSubheader';
+import Layout from '../../components/layout';
 
 const Category: NextPage<{ products: Product[] }> = ({ products }) => {
 	const getProductJsx = (products: Product[]): JSX.Element[] =>
@@ -15,10 +14,9 @@ const Category: NextPage<{ products: Product[] }> = ({ products }) => {
 	const productJsx = getProductJsx(products);
 	return (
 		<>
-			<Header />
-			<SearchBox />
-
-			{productJsx.length !== 0 ? productJsx : <p> No products found </p>}
+			<Layout>
+				{productJsx.length !== 0 ? productJsx : <p> No products found </p>}
+			</Layout>
 		</>
 	);
 };

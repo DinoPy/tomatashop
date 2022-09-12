@@ -6,22 +6,20 @@ import { Product } from '../../types/interface/productPropsInterface';
 import { useSession } from 'next-auth/react';
 import { Checkbox } from '@mui/material';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { useFavCtx } from '../../utils/favCtx';
 
 const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
-	const {
-		data: session,
-	}: {
-		data: any;
-	} = useSession();
-	const [isFavorite, setIsFavorite] = React.useState(false);
+	const { data: session }: { data: any } = useSession();
+	// const [isFavorite, setIsFavorite] = React.useState(false);
 
-	React.useEffect(() => {
-		setIsFavorite(session?.user?.favorites?.includes(product._id));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	// React.useEffect(() => {
+	// 	setIsFavorite(session?.user?.favorites?.includes(product._id));
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
+	const { favorites, setFavorites } = useFavCtx();
 
 	const handleChange = async () => {
-		if (isFavorite) {
+		if (favorites.some((item) => item._id === product._id)) {
 			fetch(
 				`/api/addtocartfav/favorites/remove/${session?.user?._id}/${product._id}`,
 				{
@@ -31,9 +29,7 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 					},
 				}
 			).then(() => {
-				session?.favorites?.splice(session?.favorites?.indexOf(product._id), 1);
-				setIsFavorite(false);
-				console.log(session);
+				setFavorites((prev) => prev.filter((fav) => fav._id !== product._id));
 			});
 		} else {
 			fetch(
@@ -44,10 +40,12 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 						'Content-Type': 'application/json',
 					},
 				}
-			).then(() => {
-				session?.favorites?.push(product._id);
-				setIsFavorite(true);
-				console.log(session);
+			).then(async (response) => {
+				const data = await response.json();
+				console.log(data);
+				if (response.status === 200) {
+					setFavorites(data.favorites);
+				}
 			});
 		}
 	};
@@ -59,7 +57,7 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 					aria-label='Favorited'
 					icon={<FavoriteBorder />}
 					checkedIcon={<Favorite />}
-					checked={isFavorite}
+					checked={favorites.some((item) => item._id === product._id)}
 					onChange={() => handleChange()}
 					sx={{
 						position: 'absolute',

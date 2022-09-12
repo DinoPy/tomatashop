@@ -1,23 +1,20 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import Image from 'next/image';
-import CategoryDropdown from './CategoryDropdown/CategoryDropdown';
 import styles from './NavigationSubheader.module.css';
-import { throttle } from '../../utils/throttle';
+import React, { Dispatch, SetStateAction } from 'react';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
+import { throttle } from '../../utils/throttle';
 import { Badge } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import CategoryDropdown from './CategoryDropdown/CategoryDropdown';
 import CartSidebar from '../CartSidebar/CartSidebar';
 import FavoritesSidebar from '../FavoritesSidebar/FavoritesSidebar';
-import { useSession } from 'next-auth/react';
+import { useFavCtx } from '../../utils/favCtx';
 
-type PropsType = {
-	inputValue: string;
-	handleSearch: React.ChangeEventHandler<HTMLInputElement>;
-};
-
-const SearchBox: React.FC = () => {
+const NavigationSubheader: React.FC = () => {
+	//
 	const [cartSidebarOpen, setCartSidebarOpen] = React.useState(false);
 	const [favoritesSidebarOpen, setFavoritesSidebarOpen] = React.useState(false);
 	const [toSearch, setToSearch] = React.useState('');
@@ -29,6 +26,22 @@ const SearchBox: React.FC = () => {
 			title: string;
 		}[]
 	>([]);
+	const { favorites, setFavorites } = useFavCtx();
+
+	React.useEffect(() => {
+		async function fetchFavorites() {
+			const response = await axios.post('/api/favorites', {
+				email: session?.user.email,
+			});
+			setFavorites(response.data[0]?.favorites);
+		}
+
+		if (session) {
+			fetchFavorites();
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [session]);
 
 	// call to api to get search results
 	const search = async (value: string) => {
@@ -109,7 +122,7 @@ const SearchBox: React.FC = () => {
 						<ShoppingCartOutlinedIcon />
 					</Badge>
 					<Badge
-						badgeContent={session?.user?.favorites?.length}
+						badgeContent={favorites?.length}
 						color='info'
 						sx={{ margin: '0 10px', cursor: 'pointer' }}
 						onClick={() => {
@@ -132,4 +145,4 @@ const SearchBox: React.FC = () => {
 	);
 };
 
-export default SearchBox;
+export default NavigationSubheader;

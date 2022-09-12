@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useFavCtx } from '../../utils/favCtx';
 
 const favContainerStyles = {
 	width: '300px',
@@ -40,31 +41,16 @@ const FavoritesSidebar: React.FC<{
 	favoritesSidebarOpen: boolean;
 }> = ({ setFavoritesSidebarOpen, favoritesSidebarOpen }) => {
 	//
+	const { favorites, setFavorites } = useFavCtx();
 	const { data: session } = useSession();
-	const [favorites, setFavorites] = React.useState<FavoritesProps['favorites']>(
-		[]
-	);
-
-	React.useEffect(() => {
-		async function fetchFavorites() {
-			const response = await axios.post('/api/favorites', {
-				email: session?.user.email,
-			});
-			setFavorites(response.data[0]?.favorites);
-		}
-
-		if (session) {
-			fetchFavorites();
-		}
-		console.log(favorites);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	const handleClick = async (id: string) => {
-		const response = axios.put(
+		const response = await axios.put(
 			`/api/addtocartfav/favorites/remove/${session?.user?._id}/${id}`
 		);
-		setFavorites((prev) => prev.filter((item) => item._id !== id));
+		if (response.status === 200) {
+			setFavorites((prev) => prev.filter((item) => item._id !== id));
+		}
 	};
 
 	const returnJsx = favorites?.map((fav) => {

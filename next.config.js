@@ -16,11 +16,6 @@ const nextConfig = {
 			'tomatastore.s3.eu-central-1.amazonaws.com',
 		],
 	},
-	experimental: {
-		images: {
-			allowFutureImage: true,
-		},
-	},
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

@@ -1,21 +1,18 @@
 import { NextPage } from 'next';
-import { useRouter } from 'next/router';
 import React from 'react';
 import Header from '../../components/header/Header';
 import IndividualProductPage from '../../components/individualProductPage/IndividualProductPage';
 import { Product } from '../../types/interface/productPropsInterface';
 import Products from '../../models/Products';
-import SearchBox from '../../components/navigationSubheader/NavigationSubheader';
+import NavigationSubheader from '../../components/navigationSubheader/NavigationSubheader';
+import Layout from '../../components/layout';
 
 const ProductPage: NextPage<{ product: Product }> = ({ product }) => {
-	// const router = useRouter();
-	// const { productId } = router.query;
-
 	return (
 		<>
-			<Header />
-			<SearchBox />
-			<IndividualProductPage product={product} />
+			<Layout>
+				<IndividualProductPage product={product} />
+			</Layout>
 		</>
 	);
 };

@@ -24,13 +24,17 @@ export default async function handler(
 
 			if (action === 'add') {
 				try {
+					console.log('add reached');
 					const user = await Users.findOne({ _id: userId });
 
 					if (user) {
 						if (user.favorites.indexOf(productId) === -1) {
 							user.favorites.push(productId);
-							const updatedUser = await user.save();
-							res.status(200).json({ message: 'success', updatedUser });
+							await user.save();
+							const updatedUser = await Users.findOne({ _id: userId }).populate(
+								'favorites'
+							);
+							res.status(200).json(updatedUser);
 							break;
 						} else {
 							res.status(400).json({ message: 'already in favorites' });
