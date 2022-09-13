@@ -56,7 +56,7 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 			{session && (
 				<Checkbox
 					aria-label='Favorited'
-					icon={<StarBorderIcon />}
+					icon={<StarBorderIcon sx={{ fill: 'white' }} />}
 					checkedIcon={<StarIcon />}
 					checked={favorites.some((item) => item._id === product._id)}
 					onChange={() => handleChange()}
@@ -68,25 +68,37 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 					color='primary'
 				/>
 			)}
+			<h1 className={styles.title}> {product.title} </h1>
 			<div className={styles.imageWrapper}>
 				<Image
 					className={styles.image}
 					src={product.image}
 					alt={product.title}
-					width={500}
-					height={500}
+					layout='fill'
+					objectFit='contain'
 				/>
 			</div>
 			<div className={styles.productInfo}>
-				<h1 className={styles.title}> {product.title} </h1>
+				<h2> Description</h2>
 				<p className={styles.description}> {product.description} </p>
-				<div>
-					<p> Input </p>
+				<div className={styles.addToCart}>
+					<input
+						type='number'
+						className={styles.quantity}
+						min='1'
+						placeholder='1'
+					/>
 					<button> Add to cart </button>
 				</div>
-				<div>
-					<p className={styles.price}> ${product.price} </p>
-					<p className={styles.category}> {product.category} </p>
+				<div className={styles.productDetails}>
+					<div>
+						<h3> Price </h3>
+						<p className={styles.price}> ${product.price} </p>
+					</div>
+					<div>
+						<h3> Category </h3>
+						<p className={styles.category}> {product.category} </p>
+					</div>
 				</div>
 			</div>
 		</div>

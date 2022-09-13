@@ -23,7 +23,7 @@ body {
 	font-family: 'Kumbh Sans', sans-serif;
 
 	background-color: var(--bg-color-dark);
-	color: rgba(255, 255, 255, 0.806);
+	color: rgb(255, 255, 255);
 }
 
 a {

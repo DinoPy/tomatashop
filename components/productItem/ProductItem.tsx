@@ -13,12 +13,12 @@ const ProductItem: NextPage<{ product: Product }> = ({ product }) => {
 					<div className={`${styles.productItem}`}>
 						<div className={`${styles.productImage}`}>
 							<Image
-								width='200px'
+								width='250px'
 								height='200px'
-								layout='intrinsic'
 								src={product.image}
 								alt={product.title}
 								blurDataURL={product.image}
+								objectFit='contain'
 							/>
 						</div>
 						<p className={`${styles.productTitle}`}> {product.title}</p>
