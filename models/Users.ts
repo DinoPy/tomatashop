@@ -7,7 +7,7 @@ export interface UserInterface {
 	images: string[];
 	orders: Schema.Types.ObjectId[];
 	favorites: Schema.Types.ObjectId[];
-	cart: Schema.Types.ObjectId[];
+	cart: { id: Schema.Types.ObjectId; quantity: number }[];
 }
 
 const UserSchema = new Schema<UserInterface>(
@@ -18,7 +18,12 @@ const UserSchema = new Schema<UserInterface>(
 		images: { type: [String], required: true },
 		orders: { type: [Schema.Types.ObjectId], ref: 'Orders' },
 		favorites: { type: [Schema.Types.ObjectId], ref: 'Products' },
-		cart: { type: [Schema.Types.ObjectId], ref: 'Products' },
+		cart: [
+			{
+				id: { type: Schema.Types.ObjectId, ref: 'Products' },
+				quantity: { type: Number, required: true, default: 1 },
+			},
+		],
 	},
 	{ timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

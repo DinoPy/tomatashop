@@ -3,6 +3,8 @@ import React, { Dispatch, SetStateAction } from 'react';
 import Drawer from '@mui/material/Drawer';
 import { Box } from '@mui/material';
 import { styled } from '@mui/system';
+import { useCartCtx } from '../../utils/cartCtx';
+import { useSession } from 'next-auth/react';
 
 const StyledContainer = styled(Box)({
 	width: '300px',
@@ -17,6 +19,24 @@ const CartSidebar: React.FC<{
 	setCartSidebarOpen: Dispatch<SetStateAction<boolean>>;
 	cartSidebarOpen: boolean;
 }> = ({ setCartSidebarOpen, cartSidebarOpen }) => {
+	//
+	const { cart, setCart } = useCartCtx();
+	const { data: session } = useSession();
+	//
+
+	const cartData =
+		cart.length > 0 ? (
+			cart.map((cartItem) => (
+				<div key={cartItem._id}>
+					<h3> {cartItem.title}</h3>
+					<h5> {carItem.price} </h5>
+				</div>
+			))
+		) : (
+			<h1> You have no items in the cart</h1>
+		);
+
+	//
 	return (
 		<div className={styles.sidebarContainer}>
 			{
@@ -26,7 +46,13 @@ const CartSidebar: React.FC<{
 						open={cartSidebarOpen}
 						onClose={() => setCartSidebarOpen(false)}
 					>
-						<StyledContainer>Cart sidebar content</StyledContainer>
+						<StyledContainer>
+							{session ? (
+								<div>{cartData}</div>
+							) : (
+								<h1> Please sign in to access the cart</h1>
+							)}
+						</StyledContainer>
 					</Drawer>
 				</React.Fragment>
 			}
