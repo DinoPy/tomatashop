@@ -116,7 +116,7 @@ export default async function handler(
 					const returnItem = {
 						name: items.title,
 						sku: 'sku01',
-						category: Category.DIGITAL_GOODS,
+						category: 'DIGITAL_GOODS',
 						description: items.description,
 						tax: {
 							currency_code: 'EUR',
