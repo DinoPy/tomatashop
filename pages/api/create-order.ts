@@ -25,7 +25,7 @@ export default async function handler(
 		_id: {
 			$in: bodyItems.map((item: any) => item.id),
 		},
-	}).select('name price');
+	}).select('name price category');
 
 	// create the paypal order
 	const request = new paypal.orders.OrdersCreateRequest();
@@ -49,6 +49,7 @@ export default async function handler(
 		intent: 'CAPTURE',
 
 		// how much everything costs
+
 		purchase_units: [
 			{
 				amount: {
@@ -59,21 +60,72 @@ export default async function handler(
 							currency_code: 'EUR',
 							value: total,
 						},
+						discount: {
+							currency_code: 'EUR',
+							value: '0',
+						},
+						handling: {
+							currency_code: 'EUR',
+							value: '0',
+						},
+						shipping: {
+							currency_code: 'EUR',
+							value: '0',
+						},
+						shipping_discount: {
+							currency_code: 'EUR',
+							value: '0',
+						},
+						tax_total: {
+							currency_code: 'EUR',
+							value: '0',
+						},
+						insurance: {
+							currency_code: 'EUR',
+							value: '0',
+						},
 					},
 				},
-				items: items.map((items) => {
+
+				// example_items:{
+				//                 "name": "T-Shirt",
+				//                 "description": "Green XL",
+				//                 "sku": "sku01",
+				//                 "unit_amount": {
+				//                     "currency_code": "USD",
+				//                     "value": "90.00"
+				//                 },
+				//                 "tax": {
+				//                     "currency_code": "USD",
+				//                     "value": "10.00"
+				//                 },
+				//                 "quantity": "1",
+				//                 "category": "PHYSICAL_GOODS"
+				//             },
+
+				items: items.map((items: any) => {
 					const quantity = bodyItems.find(
 						(i: any) => i.id === items._id.toString()
 					).quantity;
 
-					return {
-						name: items.name,
+					const returnItem = {
+						name: 'name',
+						sku: 'sku01',
+						category: 'DIGITAL_GOODS',
+						description: 'payment test',
+						tax: {
+							currency_code: 'EUR',
+							value: '0',
+						},
 						unit_amount: {
 							currency_code: 'EUR',
 							value: items.price,
 						},
-						quantity,
+						quantity: quantity,
 					};
+					console.log(returnItem);
+
+					return returnItem;
 				}),
 			},
 		],
@@ -84,8 +136,11 @@ export default async function handler(
 	try {
 		// we will receive an id for the order from paypal that will be pased to capture function.
 		const order = await paypalClient.execute(request);
-		res.status(200).json(order.result.id);
+
+		console.log(order);
+		res.status(200).json({ id: order.result.id });
 	} catch (e) {
+		console.log(e);
 		res.status(500).json({ error: e.message });
 	}
 }
