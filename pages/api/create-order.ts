@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import paypal from '@paypal/checkout-server-sdk';
 import Products from '../../models/Products';
+import { Category } from '@paypal/checkout-server-sdk/lib/orders/lib';
 
 const Environment = paypal.core.SandboxEnvironment;
 // const Environment = process.env.NODE_ENV === 'production' ? paypal.core.LiveEnvironment : paypal.core.SandboxEnvironment;
@@ -8,8 +9,8 @@ const Environment = paypal.core.SandboxEnvironment;
 // the client will take an environment whch is either paypal.core.LiveEnvironment or paypal.core.SandboxEnvironment
 const paypalClient = new paypal.core.PayPalHttpClient(
 	new Environment(
-		process.env.PAYPAL_CLIENT_ID,
-		process.env.PAYPAL_CLIENT_SECRET
+		process.env.PAYPAL_CLIENT_ID!,
+		process.env.PAYPAL_CLIENT_SECRET!
 	)
 );
 
@@ -20,12 +21,16 @@ export default async function handler(
 	// get the items from the request
 	const bodyItems = req.body.items;
 
+	const verifyOrder = new paypal.orders.OrdersGetRequest('10W93720EU513764F');
+	const order = await paypalClient.execute(verifyOrder);
+	console.log(order);
+
 	// find the items in the database so we can use the price
 	const items = await Products.find({
 		_id: {
 			$in: bodyItems.map((item: any) => item.id),
 		},
-	}).select('name price category');
+	}).select('title price');
 
 	// create the paypal order
 	const request = new paypal.orders.OrdersCreateRequest();
@@ -109,10 +114,10 @@ export default async function handler(
 					).quantity;
 
 					const returnItem = {
-						name: 'name',
+						name: items.title,
 						sku: 'sku01',
-						category: 'DIGITAL_GOODS',
-						description: 'payment test',
+						category: Category.DIGITAL_GOODS,
+						description: items.description,
 						tax: {
 							currency_code: 'EUR',
 							value: '0',
@@ -123,7 +128,6 @@ export default async function handler(
 						},
 						quantity: quantity,
 					};
-					console.log(returnItem);
 
 					return returnItem;
 				}),
@@ -137,10 +141,10 @@ export default async function handler(
 		// we will receive an id for the order from paypal that will be pased to capture function.
 		const order = await paypalClient.execute(request);
 
-		console.log(order);
+		// console.log(order);
 		res.status(200).json({ id: order.result.id });
 	} catch (e) {
 		console.log(e);
-		res.status(500).json({ error: e.message });
+		if (e instanceof Error) res.status(500).json({ error: e.message });
 	}
 }

@@ -37,7 +37,6 @@ const Paypal = () => {
 				// 		});
 				// }}
 
-				forceReRender={1}
 				createOrder={async () => {
 					const response = await fetch('/api/create-order', {
 						// we are using a post to the server to create the order using the db info
@@ -64,8 +63,9 @@ const Paypal = () => {
 					}
 				}}
 				onApprove={(data, actions) => {
-					return actions.order.capture().then((details) => {
-						const name = details.payer.name.given_name;
+					return actions!.order!.capture().then((details) => {
+						console.log(details);
+						const name = details?.payer?.name?.given_name;
 						alert(`Transaction completed by ${name}`);
 					});
 				}}
