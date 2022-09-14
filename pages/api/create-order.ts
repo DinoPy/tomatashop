@@ -1,7 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import paypal from '@paypal/checkout-server-sdk';
 import Products from '../../models/Products';
-import { Category } from '@paypal/checkout-server-sdk/lib/orders/lib';
+
+enum Category {
+	DIGITAL_GOODS = 'DIGITAL_GOODS',
+	PHYSICAL_GOODS = 'PHYSICAL_GOODS',
+	DONATION = 'DONATION',
+}
+
+//
 
 const Environment = paypal.core.SandboxEnvironment;
 // const Environment = process.env.NODE_ENV === 'production' ? paypal.core.LiveEnvironment : paypal.core.SandboxEnvironment;
@@ -116,7 +123,7 @@ export default async function handler(
 					const returnItem = {
 						name: items.title,
 						sku: 'sku01',
-						category: 'DIGITAL_GOODS',
+						category: Category.DIGITAL_GOODS,
 						description: items.description,
 						tax: {
 							currency_code: 'EUR',
