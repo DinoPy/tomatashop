@@ -20,7 +20,10 @@ const UserSchema = new Schema<UserInterface>(
 		favorites: { type: [Schema.Types.ObjectId], ref: 'Products' },
 		cart: [
 			{
-				id: { type: Schema.Types.ObjectId, ref: 'Products' },
+				_id: {
+					type: Schema.Types.ObjectId,
+					ref: 'Products',
+				},
 				quantity: { type: Number, required: true, default: 1 },
 			},
 		],

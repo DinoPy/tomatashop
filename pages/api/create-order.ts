@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import paypal from '@paypal/checkout-server-sdk';
 import Products from '../../models/Products';
+import Users from '../../models/Users';
+import dbConnect from '../../lib/dbConnect';
 
 enum Category {
 	DIGITAL_GOODS = 'DIGITAL_GOODS',
@@ -26,31 +28,49 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	// get the items from the request
-	const bodyItems = req.body.items;
+	const { userId } = req.body;
 
-	const verifyOrder = new paypal.orders.OrdersGetRequest('10W93720EU513764F');
-	const order = await paypalClient.execute(verifyOrder);
-	console.log(order);
+	try {
+		await dbConnect();
+		await Products.estimatedDocumentCount();
+	} catch (e) {
+		console.error(e);
+		return res.status(500).json({ message: 'Internal Server Error' });
+	}
 
 	// find the items in the database so we can use the price
-	const items = await Products.find({
-		_id: {
-			$in: bodyItems.map((item: any) => item.id),
-		},
-	}).select('title price');
+	// const items = await Products.find({
+	// 	_id: {
+	// 		$in: bodyItems.map((item: any) => item.id),
+	// 	},
+	// }).select('title price');
+
+	// we are going to use the cart that was saved in the database for the checkout
+	const items = await Users.findOne({ _id: userId })
+		.select('cart')
+		.populate('cart._id');
 
 	// create the paypal order
 	const request = new paypal.orders.OrdersCreateRequest();
 
 	// sum up the total of the items value considering the quantities too
-	const total = items.reduce((sum, item) => {
-		// we find the line item and get the quantity by searching
-		// using the id of each item in the array resulted from db query
-		const quantity = bodyItems.find(
-			(i: any) => i.id === item._id.toString()
-		).quantity;
-		return sum + item.price * quantity;
-	}, 0);
+	const total = items.cart
+		.reduce(
+			(sum: number, item: { _id: { price: number }; quantity: number }) => {
+				// we find the line item and get the quantity by searching
+				// using the id of each item in the array resulted from db query
+				// ---------------- only required for the method where we send the items from the frontend-----------------
+
+				// const quantity = bodyItems.find(
+				// 	(i: any) => i.id === item._id.toString()
+				// ).quantity;
+
+				// ---------------- only required for the method where we get the items from the db-----------------
+				return sum + item._id.price * item.quantity;
+			},
+			0
+		)
+		.toFixed(2);
 
 	// set the preffer to representation so the pop up works properly
 	request.prefer('return=representation');
@@ -115,25 +135,29 @@ export default async function handler(
 				//                 "category": "PHYSICAL_GOODS"
 				//             },
 
-				items: items.map((items: any) => {
-					const quantity = bodyItems.find(
-						(i: any) => i.id === items._id.toString()
-					).quantity;
+				items: items.cart.map((item: any) => {
+					// ---------------- only required for the method where we send the items from the frontend-----------------
+					// const quantity = bodyItems.find(
+					// 	(i: any) => i.id === items._id.toString()
+					// ).quantity;
+
+					//
 
 					const returnItem = {
-						name: items.title,
+						name: item._id.title,
 						sku: 'sku01',
 						category: Category.DIGITAL_GOODS,
-						description: items.description,
+						// change later into a valid description
+						description: item._id.title,
 						tax: {
 							currency_code: 'EUR',
 							value: '0',
 						},
 						unit_amount: {
 							currency_code: 'EUR',
-							value: items.price,
+							value: item._id.price,
 						},
-						quantity: quantity,
+						quantity: item.quantity,
 					};
 
 					return returnItem;
@@ -148,7 +172,6 @@ export default async function handler(
 		// we will receive an id for the order from paypal that will be pased to capture function.
 		const order = await paypalClient.execute(request);
 
-		// console.log(order);
 		res.status(200).json({ id: order.result.id });
 	} catch (e) {
 		console.log(e);

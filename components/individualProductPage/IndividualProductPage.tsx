@@ -1,6 +1,8 @@
 import React from 'react';
-import styles from './IndividualProductPage.module.css';
+import axios from 'axios';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import styles from './IndividualProductPage.module.css';
 import { NextPage } from 'next';
 import { Product } from '../../types/interface/productPropsInterface';
 import { useSession } from 'next-auth/react';
@@ -8,19 +10,19 @@ import { Checkbox } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { useFavCtx } from '../../utils/favCtx';
+import { useCartCtx } from '../../utils/cartCtx';
 
 const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	const { data: session }: { data: any } = useSession();
-	// const [isFavorite, setIsFavorite] = React.useState(false);
-
-	// React.useEffect(() => {
-	// 	setIsFavorite(session?.user?.favorites?.includes(product._id));
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
 	const { favorites, setFavorites } = useFavCtx();
+	const { cart, setCart } = useCartCtx();
+	const [quantityInput, setQuantityInput] = React.useState<number>(1);
+	const router = useRouter();
 
-	const handleChange = async () => {
-		if (favorites.some((item) => item._id === product._id)) {
+	///
+
+	const handleFavoritesChange = async () => {
+		if (favorites?.some((item) => item._id === product._id)) {
 			fetch(
 				`/api/addtocartfav/favorites/remove/${session?.user?._id}/${product._id}`,
 				{
@@ -29,8 +31,9 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 						'Content-Type': 'application/json',
 					},
 				}
-			).then(() => {
-				setFavorites((prev) => prev.filter((fav) => fav._id !== product._id));
+			).then(async (response) => {
+				const data = await response.json();
+				setFavorites(data);
 			});
 		} else {
 			fetch(
@@ -45,21 +48,55 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 				const data = await response.json();
 
 				if (response.status === 200) {
-					setFavorites(data.favorites);
+					setFavorites(data);
+
+					//
 				}
 			});
 		}
 	};
 
+	const handleCartChange = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		//
+		const activeItemQty = cart?.find((item) => item._id._id === product._id);
+
+		if (session) {
+			const response = await axios.post(
+				`/api/addtocartfav/cart/add/${session?.user?._id}/${product._id}/`,
+				{ quantity: quantityInput + (activeItemQty?.quantity || 0) }
+			);
+
+			if (response.status === 200) {
+				setCart(response.data);
+				setQuantityInput(1);
+			}
+			//
+		}
+	};
+
 	return (
 		<div className={styles.productContainer}>
+			<p
+				style={{
+					position: 'absolute',
+					top: '1em',
+					left: '1em',
+					color: 'red',
+					cursor: 'pointer',
+				}}
+				onClick={() => router.back()}
+			>
+				{' '}
+				Back{' '}
+			</p>
 			{session && (
 				<Checkbox
 					aria-label='Favorited'
 					icon={<StarBorderIcon sx={{ fill: 'white' }} />}
 					checkedIcon={<StarIcon />}
-					checked={favorites.some((item) => item._id === product._id)}
-					onChange={() => handleChange()}
+					checked={favorites?.some((item) => item._id === product._id)}
+					onChange={() => handleFavoritesChange()}
 					sx={{
 						position: 'absolute',
 						top: '0',
@@ -81,15 +118,20 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 			<div className={styles.productInfo}>
 				<h2> Description</h2>
 				<p className={styles.description}> {product.description} </p>
-				<div className={styles.addToCart}>
+				<form
+					onSubmit={(e) => handleCartChange(e)}
+					className={styles.addToCart}
+				>
 					<input
 						type='number'
 						className={styles.quantity}
+						value={quantityInput}
+						onChange={(e) => setQuantityInput(Number(e.target.value))}
 						min='1'
 						placeholder='1'
 					/>
 					<button> Add to cart </button>
-				</div>
+				</form>
 				<div className={styles.productDetails}>
 					<div>
 						<h3> Price </h3>

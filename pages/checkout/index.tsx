@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from '../../components/layout';
-import Paypal from '../../components/Paypal/Paypal';
+import CheckoutComponent from '../../components/Checkout/Checkout';
 
 const Checkout = () => {
+	//
 	return (
 		<Layout>
-			<h1>Checkout</h1>
-			<Paypal />
+			<CheckoutComponent />
 		</Layout>
 	);
 };

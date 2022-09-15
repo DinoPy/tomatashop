@@ -26,11 +26,25 @@ export interface FavoritesProps {
 		| [];
 }
 
+export interface CartProps {
+	cart:
+		| {
+				_id: {
+					_id: string;
+					title: string;
+					price: number;
+					image: string;
+				};
+				quantity: number;
+		  }[]
+		| [];
+}
+
 export default function Layout({ children }: any) {
 	const [favorites, setFavorites] = React.useState<FavoritesProps['favorites']>(
 		[]
 	);
-	const [cart, setCart] = React.useState([]);
+	const [cart, setCart] = React.useState<CartProps['cart']>([]);
 
 	return (
 		<FavCtxProvider value={{ favorites, setFavorites }}>

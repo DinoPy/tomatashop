@@ -13,6 +13,7 @@ import CategoryDropdown from './CategoryDropdown/CategoryDropdown';
 import CartSidebar from '../CartSidebar/CartSidebar';
 import FavoritesSidebar from '../FavoritesSidebar/FavoritesSidebar';
 import { useFavCtx } from '../../utils/favCtx';
+import { useCartCtx } from '../../utils/cartCtx';
 
 const NavigationSubheader: React.FC = () => {
 	//
@@ -28,17 +29,27 @@ const NavigationSubheader: React.FC = () => {
 		}[]
 	>([]);
 	const { favorites, setFavorites } = useFavCtx();
+	const { cart, setCart } = useCartCtx();
 
 	React.useEffect(() => {
 		async function fetchFavorites() {
-			const response = await axios.post('/api/favorites', {
-				email: session?.user.email,
-			});
-			setFavorites(response.data[0]?.favorites);
+			const response = await axios.get(
+				`/api/addtocartfav/favorites/none/${session?.user._id}/none`
+			);
+			setFavorites(response.data);
+		}
+
+		async function fetchCart() {
+			const response = await axios.get(
+				`/api/addtocartfav/cart/none/${session?.user._id}/none`
+			);
+
+			setCart(response.data);
 		}
 
 		if (session) {
 			fetchFavorites();
+			fetchCart();
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,7 +124,7 @@ const NavigationSubheader: React.FC = () => {
 				</div>
 				<div>
 					<Badge
-						badgeContent={1}
+						badgeContent={cart?.length}
 						color='info'
 						sx={{ margin: '0 10px', cursor: 'pointer' }}
 						onClick={() => {

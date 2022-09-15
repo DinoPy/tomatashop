@@ -12,29 +12,11 @@ const favContainerStyles = {
 	width: '300px',
 	height: '100%',
 	display: 'flex',
-	backgroundColor: 'rgba(1,0,0,0.5)',
+	backgroundColor: '#252525',
+	color: 'white',
 	padding: '10px',
 };
 //
-
-export interface FavoritesProps {
-	favorites:
-		| {
-				_id: string;
-				title: string;
-				category: string;
-				image: string;
-				price: number;
-				description: string;
-				rating: {
-					rate: number;
-					count: number;
-				};
-				createdAt: string;
-				updatedAt: string;
-		  }[]
-		| [];
-}
 
 const FavoritesSidebar: React.FC<{
 	setFavoritesSidebarOpen: Dispatch<SetStateAction<boolean>>;
@@ -49,7 +31,7 @@ const FavoritesSidebar: React.FC<{
 			`/api/addtocartfav/favorites/remove/${session?.user?._id}/${id}`
 		);
 		if (response.status === 200) {
-			setFavorites((prev) => prev.filter((item) => item._id !== id));
+			setFavorites(response.data);
 		}
 	};
 

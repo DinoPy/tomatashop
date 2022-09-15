@@ -1,8 +1,9 @@
 import React, { useContext, Dispatch, SetStateAction } from 'react';
+import { CartProps } from '../components/layout';
 
 const cartCtx = React.createContext<{
-	setCart: Dispatch<SetStateAction<[]>>;
-	cart: [];
+	setCart: Dispatch<SetStateAction<CartProps['cart']>>;
+	cart: CartProps['cart'];
 }>({
 	setCart: () => {},
 	cart: [],
