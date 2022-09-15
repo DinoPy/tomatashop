@@ -14,6 +14,7 @@ import CartSidebar from '../CartSidebar/CartSidebar';
 import FavoritesSidebar from '../FavoritesSidebar/FavoritesSidebar';
 import { useFavCtx } from '../../utils/favCtx';
 import { useCartCtx } from '../../utils/cartCtx';
+import { useRouter } from 'next/router';
 
 const NavigationSubheader: React.FC = () => {
 	//
@@ -30,6 +31,7 @@ const NavigationSubheader: React.FC = () => {
 	>([]);
 	const { favorites, setFavorites } = useFavCtx();
 	const { cart, setCart } = useCartCtx();
+	const router = useRouter();
 
 	React.useEffect(() => {
 		async function fetchFavorites() {
@@ -123,16 +125,18 @@ const NavigationSubheader: React.FC = () => {
 					</div>
 				</div>
 				<div>
-					<Badge
-						badgeContent={cart?.length}
-						color='info'
-						sx={{ margin: '0 10px', cursor: 'pointer' }}
-						onClick={() => {
-							setCartSidebarOpen(true);
-						}}
-					>
-						<ShoppingCartOutlinedIcon />
-					</Badge>
+					{router.pathname !== '/checkout' && (
+						<Badge
+							badgeContent={cart?.length}
+							color='info'
+							sx={{ margin: '0 10px', cursor: 'pointer' }}
+							onClick={() => {
+								setCartSidebarOpen(true);
+							}}
+						>
+							<ShoppingCartOutlinedIcon />
+						</Badge>
+					)}
 					<Badge
 						badgeContent={favorites?.length}
 						color='info'

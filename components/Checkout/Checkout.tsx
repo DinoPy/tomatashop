@@ -8,17 +8,21 @@ const Checkout = () => {
 	const router = useRouter();
 	const { data: session } = useSession();
 	const { cart, setCart } = useCartCtx();
-	//
 
-	React.useEffect(() => {
-		if (!session) {
-			router.push('/login');
-		}
+	console.log(cart);
+	// session is null if not logged in and it has to get the session on every route change, the cart is the same.
 
-		if (cart.length === 0) {
-			router.push('/store');
-		}
-	}, []);
+	// React.useEffect(() => {
+	// 	if (!session) {
+	// 		router.push('/api/auth/signin');
+	// 		console.log('no session');
+	// 	}
+
+	// 	if (cart.length === 0) {
+	// 		router.push('/store');
+	// 		console.log('no items in cart');
+	// 	}
+	// }, []);
 
 	return (
 		<div>
