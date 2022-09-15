@@ -10,9 +10,15 @@ const Checkout = () => {
 	const { cart, setCart } = useCartCtx();
 	//
 
-	if (!session) {
-		router.push('/login');
-	}
+	React.useEffect(() => {
+		if (!session) {
+			router.push('/login');
+		}
+
+		if (cart.length === 0) {
+			router.push('/store');
+		}
+	}, []);
 
 	return (
 		<div>
