@@ -57,7 +57,6 @@ export default async function handler(
 					})),
 				});
 
-				console.log(newOrder);
 				user.orders.push(newOrder._id);
 				user.cart = [];
 				await user.save();

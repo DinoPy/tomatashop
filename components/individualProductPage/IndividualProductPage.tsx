@@ -1,16 +1,20 @@
+import styles from './IndividualProductPage.module.css';
 import React from 'react';
 import axios from 'axios';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import styles from './IndividualProductPage.module.css';
-import { NextPage } from 'next';
-import { Product } from '../../types/interface/productPropsInterface';
-import { useSession } from 'next-auth/react';
-import { Checkbox } from '@mui/material';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarIcon from '@mui/icons-material/Star';
 import { useFavCtx } from '../../utils/favCtx';
 import { useCartCtx } from '../../utils/cartCtx';
+import { NextPage } from 'next';
+import { Product } from '../../types/interface/productPropsInterface';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+//
+import { Checkbox, Fab } from '@mui/material';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import StarIcon from '@mui/icons-material/Star';
 
 const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	const { data: session }: { data: any } = useSession();
@@ -18,8 +22,10 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	const { cart, setCart } = useCartCtx();
 	const [quantityInput, setQuantityInput] = React.useState<number>(1);
 	const router = useRouter();
+	const [rated, setRated] = React.useState(false);
 
 	///
+	console.log(product);
 
 	const handleFavoritesChange = async () => {
 		if (favorites?.some((item) => item._id === product._id)) {
@@ -74,22 +80,52 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 			//
 		}
 	};
+	//
+
+	React.useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setRated(!!localStorage.getItem(product._id));
+		}
+	}, []);
+
+	const handleRatingChange = async (newValue: number | null) => {
+		// if (session) {
+		// 	const response = await axios.post(
+		// 		`/api/rating/${session?.user?._id}/${product._id}`,
+		// 		{ rating: newValue }
+		// 	);
+		// 	if (response.status === 200) {
+		// 		setRated(true);
+		// 		localStorage.setItem(product._id, 'rated');
+		// 	}
+		// }
+		localStorage.setItem(product._id, 'true');
+		setRated(true);
+	};
 
 	return (
 		<div className={styles.productContainer}>
-			<p
-				style={{
+			<Fab
+				variant='extended'
+				sx={{
 					position: 'absolute',
-					top: '1em',
-					left: '1em',
-					color: 'red',
+					top: '-8%',
+					left: '-8%',
 					cursor: 'pointer',
+					bgcolor: 'grey.800',
+					color: 'white',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+					padding: '.5rem .5rem',
+					'&:hover': {
+						bgcolor: 'grey.700',
+					},
 				}}
 				onClick={() => router.back()}
 			>
-				{' '}
-				Back{' '}
-			</p>
+				<ArrowBackIcon />
+			</Fab>
 			{session && (
 				<Checkbox
 					aria-label='Favorited'
@@ -99,8 +135,8 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 					onChange={() => handleFavoritesChange()}
 					sx={{
 						position: 'absolute',
-						top: '0',
-						right: '0',
+						top: '-8%',
+						right: '-5%',
 					}}
 					color='primary'
 				/>
@@ -132,6 +168,18 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 					/>
 					<button> Add to cart </button>
 				</form>
+				<Stack spacing={1}>
+					<Rating
+						name='half-rating-read'
+						defaultValue={rated ? product.rating.rate : 2.5}
+						precision={0.1}
+						onChange={(_event, newValue) => {
+							handleRatingChange(newValue);
+						}}
+						readOnly={rated}
+					/>
+					<p> Rating</p>
+				</Stack>
 				<div className={styles.productDetails}>
 					<div>
 						<h3> Price </h3>

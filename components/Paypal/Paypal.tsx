@@ -76,7 +76,6 @@ const Paypal = () => {
 				}}
 				onApprove={(data, actions) => {
 					return actions!.order!.capture().then(async (details) => {
-						console.log(details);
 						// const name = details?.payer?.name?.given_name;
 						// alert(`Transaction completed by ${name}`);
 
