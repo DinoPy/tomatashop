@@ -9,7 +9,7 @@ const Paypal = () => {
 	const { cart, setCart } = useCartCtx();
 	const { data: session } = useSession();
 	const router = useRouter();
-	console.log(process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID);
+
 	return (
 		<PayPalScriptProvider
 			options={{
@@ -76,7 +76,7 @@ const Paypal = () => {
 				}}
 				onApprove={(data, actions) => {
 					return actions!.order!.capture().then(async (details) => {
-						// console.log(details);
+						console.log(details);
 						// const name = details?.payer?.name?.given_name;
 						// alert(`Transaction completed by ${name}`);
 

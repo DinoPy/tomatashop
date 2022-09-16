@@ -171,7 +171,7 @@ export default async function handler(
 	try {
 		// we will receive an id for the order from paypal that will be pased to capture function.
 		const order = await paypalClient.execute(request);
-
+		// console.log(order);
 		res.status(200).json({ id: order.result.id });
 	} catch (e) {
 		console.log(e);
