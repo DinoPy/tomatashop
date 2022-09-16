@@ -9,11 +9,11 @@ const Paypal = () => {
 	const { cart, setCart } = useCartCtx();
 	const { data: session } = useSession();
 	const router = useRouter();
+	console.log(process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID);
 	return (
 		<PayPalScriptProvider
 			options={{
-				'client-id':
-					'AR_So18PHo_-j6RPLleQNtGJx98srbotMFHxtM37CezLKkIzaWNUg5070lAydg_v1Ib5iKcFDto7Yy1h',
+				'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
 				currency: 'EUR',
 				intent: 'capture',
 			}}

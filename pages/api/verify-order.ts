@@ -11,7 +11,7 @@ const Environment = paypal.core.SandboxEnvironment;
 // the client will take an environment whch is either paypal.core.LiveEnvironment or paypal.core.SandboxEnvironment
 const paypalClient = new paypal.core.PayPalHttpClient(
 	new Environment(
-		process.env.PAYPAL_CLIENT_ID!,
+		process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
 		process.env.PAYPAL_CLIENT_SECRET!
 	)
 );
