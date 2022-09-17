@@ -17,21 +17,41 @@ import { useCartCtx } from '../../utils/cartCtx';
 import { useRouter } from 'next/router';
 
 const NavigationSubheader: React.FC = () => {
+	const { data: session } = useSession();
+	const router = useRouter();
+	//
+	const { favorites, setFavorites } = useFavCtx();
+	const { cart, setCart } = useCartCtx();
 	//
 	const [cartSidebarOpen, setCartSidebarOpen] = React.useState(false);
+	const [searchResultsOpen, setSearchResultsOpen] = React.useState(false);
 	const [favoritesSidebarOpen, setFavoritesSidebarOpen] = React.useState(false);
 	const [toSearch, setToSearch] = React.useState('');
 	const [inputValue, setInputValue] = React.useState('');
-	const { data: session } = useSession();
 	const [searchResults, setSearchResults] = React.useState<
 		{
 			_id: string;
 			title: string;
 		}[]
 	>([]);
-	const { favorites, setFavorites } = useFavCtx();
-	const { cart, setCart } = useCartCtx();
-	const router = useRouter();
+
+	const serachInputRef = React.useRef<HTMLInputElement>(null);
+
+	React.useEffect(() => {
+		const onEscape = function () {
+			window &&
+				window.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape') {
+						serachInputRef.current?.blur();
+					}
+				});
+		};
+		onEscape();
+
+		return () => {
+			window && window.removeEventListener('keydown', onEscape);
+		};
+	}, []);
 
 	React.useEffect(() => {
 		async function fetchFavorites() {
@@ -93,16 +113,26 @@ const NavigationSubheader: React.FC = () => {
 					<CategoryDropdown />
 				</div>
 				<div className={styles.searchWrapper}>
-					<div className={styles.smallContainer}>
+					<form
+						className={styles.smallContainer}
+						onSubmit={(e) => {
+							e.preventDefault();
+							router.push(`/search?query=${inputValue}`);
+						}}
+					>
 						<input
 							className={styles.inputBox}
 							type='text'
 							name='searchEl'
 							value={inputValue}
 							onChange={handleSearch}
+							placeholder='Search'
+							onFocus={() => setSearchResultsOpen(true)}
+							onBlur={() => setSearchResultsOpen(false)}
+							ref={serachInputRef}
 						/>
 
-						<button className={styles.searchButton}>
+						<button className={styles.searchButton} type='submit'>
 							<Image
 								width='25px'
 								height='25px'
@@ -110,19 +140,21 @@ const NavigationSubheader: React.FC = () => {
 								alt='searchIcon'
 							/>
 						</button>
-					</div>
+					</form>
 
-					<div className={styles.dropdown}>
-						{searchResults.length > 0 &&
-							toSearch.length > 2 &&
-							searchResults?.map((result) => (
-								<>
-									<Link href={`/product/${result._id}`} key={result._id}>
-										<a>{`${result.title}`}</a>
-									</Link>
-								</>
-							))}
-					</div>
+					{searchResultsOpen && (
+						<div className={styles.dropdown}>
+							{searchResults.length > 0 &&
+								toSearch.length > 2 &&
+								searchResults?.map((result) => (
+									<>
+										<Link href={`/product/${result._id}`} key={result._id}>
+											<a>{`${result.title}`}</a>
+										</Link>
+									</>
+								))}
+						</div>
+					)}
 				</div>
 				<div>
 					{router.pathname !== '/checkout' && (

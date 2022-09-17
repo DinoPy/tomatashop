@@ -1,0 +1,40 @@
+.searchContainer {
+	max-width: 1200px;
+	margin: 3em auto;
+	padding: 3em;
+}
+
+.searchContainer > h1 {
+	margin-bottom: 1.5em;
+}
+
+.lineItemContainer {
+	margin-bottom: 1em;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+	min-height: 100px;
+	display: flex;
+	gap: 1em;
+	padding: 1em;
+	position: relative;
+}
+
+.title {
+	font-size: 1.5em;
+}
+
+.price {
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+}
+
+@media screen and (max-width: 768px) {
+	.lineItemContainer {
+		padding: 2em;
+	}
+
+	.title {
+		font-size: 1em;
+	}
+}
