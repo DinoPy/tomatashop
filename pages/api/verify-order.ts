@@ -49,6 +49,7 @@ export default async function handler(
 				const newOrder = await Orders.create({
 					userId: userId,
 					orderId: orderId,
+					orderNo: (await Orders.estimatedDocumentCount()) + 1,
 					items: user.cart.map((item: any) => ({
 						_id: item._id._id,
 						name: item._id.title,

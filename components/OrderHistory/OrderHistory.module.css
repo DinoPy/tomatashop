@@ -1,0 +1,30 @@
+.orderHistoryContainer {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+	.orderHistoryContainer {
+		width: 100%;
+		padding: 1em;
+	}
+}
+
+.orderNo {
+	cursor: pointer;
+}
+
+.orderHistoryItemContainer {
+	display: flex;
+	flex-direction: column;
+	margin: 1em 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	padding: 0.5em;
+}
+
+.orderHistoryItemContainer > div {
+	display: flex;
+	justify-content: space-between;
+}

@@ -5,6 +5,7 @@ import { Product } from '../../types/interface/productPropsInterface';
 import ProductItem from '../../components/productItem/ProductItem';
 import Layout from '../../components/layout';
 import dbConnect from '../../lib/dbConnect';
+import StoreContainer from '../../components/storeContainer/StoreContainer';
 
 const Category: NextPage<{ products: Product[] }> = ({ products }) => {
 	const getProductJsx = (products: Product[]): JSX.Element[] =>
@@ -16,7 +17,7 @@ const Category: NextPage<{ products: Product[] }> = ({ products }) => {
 	return (
 		<>
 			<Layout>
-				{productJsx.length !== 0 ? productJsx : <p> No products found </p>}
+				<StoreContainer products={products} pages={0} />
 			</Layout>
 		</>
 	);

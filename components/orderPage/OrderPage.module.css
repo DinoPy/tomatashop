@@ -1,0 +1,44 @@
+.orderPageContainer {
+	max-width: 1400px;
+	margin: 3em auto;
+	padding: 3em;
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+.orderNoDateContainer {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid white;
+}
+
+.orderNo {
+	display: block;
+	padding-bottom: 1em;
+	border: 1px;
+}
+
+.orderItemsContainer {
+	list-style: url('/images/arrow.svg');
+	list-style-position: calc(1em + 1px);
+	border-bottom: 1px solid white;
+}
+
+.lineItem {
+	margin-bottom: 1.5em;
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summaryContainer {
+	display: flex;
+	justify-content: space-between;
+	gap: 1em;
+}
+
+@media screen and (max-width: 768px) {
+	.orderPageContainer {
+		width: 100%;
+		padding: 1em;
+	}
+}

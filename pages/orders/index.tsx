@@ -5,17 +5,12 @@ import dbConnect from '../../lib/dbConnect';
 import Users from '../../models/Users';
 import OrdersModel from '../../models/Orders';
 import { getSession } from 'next-auth/react';
+import OrderHistory from '../../components/OrderHistory/OrderHistory';
 
 const Orders = ({ orders }: any) => {
 	return (
 		<Layout>
-			{
-				// everything here is just a placeholder
-			}
-			<h1>Orders</h1>
-			{orders?.map((order: any) => (
-				<div key={order._id}> {order.orderId}</div>
-			))}
+			<OrderHistory orders={orders} />
 		</Layout>
 	);
 };
