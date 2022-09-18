@@ -16,15 +16,16 @@ const Pagination: NextPage<PropsType> = ({ pages }) => {
 		for (let i = 1; i <= pages; i++) {
 			pagesArray.push(
 				<li key={i}>
-					<a
-						style={{
-							fontWeight: activePageNumber === i ? 'bold' : 'regular',
-							textDecoration: activePageNumber === i ? 'underline' : 'none',
-						}}
-						href={`/store?page=${i}`}
-					>
-						{i}
-					</a>
+					<Link href={`/store?page=${i}`}>
+						<a
+							style={{
+								fontWeight: activePageNumber === i ? 'bold' : 'regular',
+								textDecoration: activePageNumber === i ? 'underline' : 'none',
+							}}
+						>
+							{i}
+						</a>
+					</Link>
 				</li>
 			);
 		}

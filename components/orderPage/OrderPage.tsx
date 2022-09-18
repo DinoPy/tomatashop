@@ -5,7 +5,6 @@ import styles from './OrderPage.module.css';
 import Link from 'next/link';
 
 const OrderPage: React.FC<{ order: OrdersInterface }> = ({ order }) => {
-	console.log(order);
 	return (
 		<div className={styles.orderPageContainer}>
 			<div className={styles.orderNoDateContainer}>
@@ -41,7 +40,6 @@ const OrderPage: React.FC<{ order: OrdersInterface }> = ({ order }) => {
 				Total €{' '}
 				{order.items
 					.reduce((total, itm) => {
-						console.log(itm);
 						return total + itm.quantity * itm.purchaseTimePrice;
 					}, 0)
 					.toFixed(2)}

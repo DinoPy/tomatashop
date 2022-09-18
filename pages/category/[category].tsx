@@ -6,14 +6,11 @@ import ProductItem from '../../components/productItem/ProductItem';
 import Layout from '../../components/layout';
 import dbConnect from '../../lib/dbConnect';
 import StoreContainer from '../../components/storeContainer/StoreContainer';
+import { useRouter } from 'next/router';
 
 const Category: NextPage<{ products: Product[] }> = ({ products }) => {
-	const getProductJsx = (products: Product[]): JSX.Element[] =>
-		products?.map((product) => (
-			<ProductItem key={product._id} product={product} />
-		));
+	const router = useRouter();
 
-	const productJsx = getProductJsx(products);
 	return (
 		<>
 			<Layout>
@@ -34,6 +31,7 @@ export async function getServerSideProps(context: any) {
 		return {
 			props: {
 				products: JSON.parse(JSON.stringify(products)),
+				// route: category,
 			},
 		};
 	} catch (error) {

@@ -71,7 +71,7 @@ const Paypal = () => {
 							return Promise.reject(id);
 						}
 					} catch (e) {
-						console.log(e);
+						console.error(e);
 					}
 				}}
 				onApprove={(data, actions) => {

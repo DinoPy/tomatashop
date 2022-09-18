@@ -174,7 +174,7 @@ export default async function handler(
 		// console.log(order);
 		res.status(200).json({ id: order.result.id });
 	} catch (e) {
-		console.log(e);
+		console.error(e);
 		if (e instanceof Error) res.status(500).json({ error: e.message });
 	}
 }

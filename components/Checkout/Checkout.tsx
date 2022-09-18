@@ -11,7 +11,6 @@ const Checkout = () => {
 	const { data: session } = useSession();
 	const { cart, setCart } = useCartCtx();
 
-	console.log(cart);
 	// session is null if not logged in and it has to get the session on every route change, the cart is the same.
 
 	// React.useEffect(() => {

@@ -25,7 +25,6 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	const [rated, setRated] = React.useState(false);
 
 	///
-	console.log(product);
 
 	const handleFavoritesChange = async () => {
 		if (favorites?.some((item) => item._id === product._id)) {

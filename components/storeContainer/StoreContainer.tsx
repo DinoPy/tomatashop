@@ -18,10 +18,7 @@ type PropsType = {
 };
 
 const MainContainer: NextPage<PropsType> = ({ products, pages }) => {
-	const [productData, setProductData] = useState<Product[]>(products);
-	const [searchResults, setSearchResults] = useState<Product[]>(productData);
 	const router = useRouter();
-	console.log(router);
 
 	// generating products Jsx from the data received from server.
 	const productsJsx = (itemsList: Product[]): JSX.Element[] =>
@@ -35,8 +32,8 @@ const MainContainer: NextPage<PropsType> = ({ products, pages }) => {
 				<Pagination pages={pages} />
 			)}
 			<div className={`${styles.products}`}>
-				{searchResults.length > 0 ? (
-					productsJsx(searchResults)
+				{products.length > 0 ? (
+					productsJsx(products)
 				) : (
 					<h1> No results for your search...</h1>
 				)}

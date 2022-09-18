@@ -17,8 +17,6 @@ const Search = ({ products }: { products: ProductsProps['products'] }) => {
 export default Search;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-	console.log(context.query);
-
 	const { query } = context.query as { query: string };
 	try {
 		await dbConnect();

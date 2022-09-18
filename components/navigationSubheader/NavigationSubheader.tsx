@@ -36,6 +36,7 @@ const NavigationSubheader: React.FC = () => {
 	>([]);
 
 	const serachInputRef = React.useRef<HTMLInputElement>(null);
+	const searchResultsRef = React.useRef<HTMLDivElement>(null);
 
 	React.useEffect(() => {
 		const onEscape = function () {
@@ -128,7 +129,7 @@ const NavigationSubheader: React.FC = () => {
 							onChange={handleSearch}
 							placeholder='Search'
 							onFocus={() => setSearchResultsOpen(true)}
-							onBlur={() => setSearchResultsOpen(false)}
+							// onBlur={() => setTimeout(setSearchResultsOpen(false), 500)}
 							ref={serachInputRef}
 						/>
 
@@ -143,7 +144,7 @@ const NavigationSubheader: React.FC = () => {
 					</form>
 
 					{searchResultsOpen && (
-						<div className={styles.dropdown}>
+						<div className={styles.dropdown} ref={searchResultsRef}>
 							{searchResults.length > 0 &&
 								toSearch.length > 2 &&
 								searchResults?.map((result) => (

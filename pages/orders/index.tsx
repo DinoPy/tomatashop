@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			},
 		};
 	} catch (e) {
-		console.log(e);
+		console.error(e);
 		return {
 			props: {
 				results: [],

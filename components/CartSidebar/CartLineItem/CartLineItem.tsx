@@ -50,8 +50,8 @@ const CartItem = ({ cartItem }: { cartItem: CartProps['cart'][0] }) => {
 						onChange={(e) => setLineItemQuantity(parseInt(e.target.value))}
 					/>
 				</label>
-				<p> {cartItem._id.price}</p>
-				<p> {cartItem._id.price * cartItem.quantity} </p>
+				<p> {cartItem._id.price.toFixed(2)}</p>
+				<p> {(cartItem._id.price * cartItem.quantity).toFixed(2)} </p>
 			</div>
 			<DeleteOutlineIcon
 				sx={{
