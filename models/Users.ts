@@ -1,8 +1,9 @@
 import { model, Schema, models } from 'mongoose';
 
 export interface UserInterface {
-	googleOauthId: string;
+	googleOauthId?: string;
 	name: string;
+	password?: string;
 	email: string;
 	images: string[];
 	orders: Schema.Types.ObjectId[];
@@ -12,8 +13,9 @@ export interface UserInterface {
 
 const UserSchema = new Schema<UserInterface>(
 	{
-		googleOauthId: { type: String, required: true },
+		googleOauthId: { type: String },
 		name: { type: String, required: true },
+		password: { type: String },
 		email: { type: String, required: true, unique: true },
 		images: { type: [String], required: true },
 		orders: { type: [Schema.Types.ObjectId], ref: 'Orders' },

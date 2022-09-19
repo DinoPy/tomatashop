@@ -10,12 +10,10 @@
 	gap: 1em;
 	position: relative;
 	bottom: 0;
+
 	background-color: #3c3c3c;
 	margin-top: 3em;
-	position: relative;
 	color: rgba(212, 212, 212, 0.753);
-
-	position: relative;
 }
 
 .footer::after {

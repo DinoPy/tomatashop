@@ -13,17 +13,20 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	if (req.method === 'POST') {
-		const key = `${'idtest'}/${uuidv4()}.png`;
+		const { userId, imageType } = req.body;
+		const key = `${userId || 'idtest'}/${uuidv4()}.png`;
 		const s3Params = {
 			Bucket: 'tomatastore',
 			// the id of the user should be received from the front end.
 			Key: key,
-			ContentType: 'image/jpeg',
+			ContentType: imageType || 'image/png',
 		};
 
 		s3.getSignedUrl('putObject', s3Params, (err, url) => {
 			return res.status(200).json({ url, key });
 		});
+	} else {
+		return res.status(400).json({ message: 'Invalid request' });
 	}
 }
 

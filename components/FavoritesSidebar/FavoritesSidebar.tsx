@@ -51,9 +51,14 @@ const FavoritesSidebar: React.FC<{
 					<p className={styles.title}>{fav.title}</p>
 				</Link>
 				<DeleteOutlineIcon
-					sx={{ position: 'absolute', bottom: 0, right: 0, cursor: 'pointer' }}
+					sx={{
+						position: 'absolute',
+						bottom: 0,
+						right: 0,
+						cursor: 'pointer',
+						color: 'white',
+					}}
 					fontSize='small'
-					color='primary'
 					onClick={(e) => {
 						handleClick(fav._id);
 					}}

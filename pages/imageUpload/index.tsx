@@ -20,6 +20,7 @@ const FileUploadTest: React.FC = () => {
 				body: file.file,
 			})
 				.then((response) => {
+					console.log(response);
 					setImageUploadUrl('');
 				})
 				.catch((e) => {});

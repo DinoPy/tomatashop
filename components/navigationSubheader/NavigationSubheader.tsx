@@ -44,6 +44,7 @@ const NavigationSubheader: React.FC = () => {
 				window.addEventListener('keydown', (e) => {
 					if (e.key === 'Escape') {
 						serachInputRef.current?.blur();
+						setSearchResultsOpen(false);
 					}
 				});
 		};
@@ -107,6 +108,12 @@ const NavigationSubheader: React.FC = () => {
 		throttleSearch(e.target.value);
 	};
 
+	const onBlurHandler = () => {
+		setTimeout(() => {
+			setSearchResultsOpen(false);
+		}, 100);
+	};
+
 	return (
 		<>
 			<div className={`${styles.subheaderContainer}`}>
@@ -129,7 +136,9 @@ const NavigationSubheader: React.FC = () => {
 							onChange={handleSearch}
 							placeholder='Search'
 							onFocus={() => setSearchResultsOpen(true)}
-							// onBlur={() => setTimeout(setSearchResultsOpen(false), 500)}
+							onBlur={() => {
+								onBlurHandler();
+							}}
 							ref={serachInputRef}
 						/>
 

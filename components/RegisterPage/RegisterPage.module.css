@@ -1,0 +1,17 @@
+.registerPageContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 70vh;
+	max-width: 600px;
+
+	min-width: fit-content;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 700px) {
+	.registerPageContainer {
+		margin: 2rem;
+	}
+}
