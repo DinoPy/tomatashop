@@ -52,7 +52,7 @@ export default function Layout({ children }: any) {
 				<>
 					<Header />
 					<NavigationSubheader />
-					{children}
+					<div style={{ minHeight: '50vh' }}>{children}</div>
 					<Footer />
 					<Fab
 						variant='extended'

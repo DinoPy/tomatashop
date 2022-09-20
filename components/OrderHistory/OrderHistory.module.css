@@ -28,3 +28,8 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.noOrdersText {
+	text-align: center;
+	height: 100px;
+}

@@ -4,9 +4,10 @@ import { OrdersInterface } from '../../models/Orders';
 import Link from 'next/link';
 
 const OrderHistory = ({ orders }: { orders: OrdersInterface[] }) => {
+	console.log(orders);
 	return (
 		<div className={styles.orderHistoryContainer}>
-			{orders ? (
+			{orders.length > 0 ? (
 				<>
 					<h1>Orders</h1>
 					{orders?.map((order: any) => (
@@ -42,7 +43,7 @@ const OrderHistory = ({ orders }: { orders: OrdersInterface[] }) => {
 					))}
 				</>
 			) : (
-				<h1> No orders yet </h1>
+				<h1 className={styles.noOrdersText}> No orders yet </h1>
 			)}
 		</div>
 	);
