@@ -1,8 +1,11 @@
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import dbConnect from '../../../lib/dbConnect';
 import User, { UserInterface } from '../../../models/Users';
+import bcrypt from 'bcrypt';
+import Users from '../../../models/Users';
 
 export default NextAuth({
 	providers: [
@@ -13,6 +16,37 @@ export default NextAuth({
 		GoogleProvider({
 			clientId: process.env.GOOGLE_ID,
 			clientSecret: process.env.GOOGLE_SECRET,
+		}),
+		CredentialsProvider({
+			name: 'Credentials',
+			credentials: {
+				email: { label: 'Email', type: 'text', placeholder: 'email@email.com' },
+				password: { label: 'Password', type: 'password' },
+			},
+			async authorize(credentials) {
+				try {
+					await dbConnect();
+					const user = await Users.findOne({ email: credentials.email });
+					console.log(user);
+
+					if (!user) {
+						return null;
+					}
+
+					const valid = await bcrypt.compare(
+						credentials.password,
+						user.password
+					);
+
+					if (!valid) {
+						return null;
+					}
+
+					return user;
+				} catch (e) {
+					return null;
+				}
+			},
 		}),
 	],
 	callbacks: {

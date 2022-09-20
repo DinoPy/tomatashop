@@ -75,10 +75,16 @@ const UserAuthStatus = () => {
 					</Menu>
 				</>
 			) : (
-				<a style={{ marginRight: '1em' }} href='#' onClick={() => signIn()}>
-					{' '}
-					Sign in <LoginIcon fontSize='small' />
-				</a>
+				<>
+					<a style={{ marginRight: '1em' }} href='#' onClick={() => signIn()}>
+						{' '}
+						Sign in <LoginIcon fontSize='small' />
+					</a>
+					<span>/ </span>
+					<Link href='/register'>
+						<a>Sign Up</a>
+					</Link>
+				</>
 				// <Link href='/api/auth/signin'> Sign In </Link>
 			)}
 		</div>
