@@ -4,8 +4,9 @@ import CategoriesSection from './categoriesSection/CategoriesSection';
 import { NextPage } from 'next';
 import EshopCarousel from './eshopsSection/EshopSection';
 import ReviewCarouselSection from './reviewCarouselSection/ReviewSection';
+import { ReviewInterface } from '../../models/Reviews';
 
-const WelcomePage: NextPage = () => {
+const WelcomePage: NextPage<{ reviews: ReviewInterface[] }> = ({ reviews }) => {
 	return (
 		<>
 			{' '}
@@ -13,7 +14,7 @@ const WelcomePage: NextPage = () => {
 			<SubHeroSection />
 			<CategoriesSection />
 			<EshopCarousel />
-			<ReviewCarouselSection />
+			<ReviewCarouselSection reviews={reviews} />
 		</>
 	);
 };

@@ -3,8 +3,11 @@ import Head from 'next/head';
 import WelcomePage from '../components/wecomePage/WelcomePage';
 import React from 'react';
 import Layout from '../components/layout';
+import dbConnect from '../lib/dbConnect';
+import Reviews, { ReviewInterface } from '../models/Reviews';
+import Users from '../models/Users';
 
-const Home: NextPage = () => {
+const Home: NextPage<{ reviews: ReviewInterface[] }> = ({ reviews }) => {
 	// const [scrollYOffset, setScrollYOffset] = React.useState(0);
 	// const [scrollDirection, setScrollDirection] = React.useState('down');
 
@@ -59,10 +62,51 @@ const Home: NextPage = () => {
 			> */}
 			<Layout>
 				{/* </div> */}
-				<WelcomePage />
+				<WelcomePage reviews={reviews} />
 			</Layout>
 		</>
 	);
 };
 
 export default Home;
+
+export async function getServerSideProps() {
+	const placeholder = [
+		{
+			title: 'I love your designs',
+			comment: 'The art is do unique and the quality is amazing',
+			userId: {
+				images: [
+					'https://tomatastore.s3.eu-central-1.amazonaws.com/idtest/8aba091f-a210-4669-bc6c-c013185c10a6.png',
+				],
+			},
+		},
+	];
+	try {
+		await dbConnect();
+		await Users.estimatedDocumentCount();
+		const reviews = await Reviews.find({ rating: 5 })
+			.limit(5)
+			.populate('userId', 'images');
+
+		if (reviews.length > 0) {
+			return {
+				props: {
+					reviews: JSON.parse(JSON.stringify(reviews)),
+				},
+			};
+		} else {
+			return {
+				props: {
+					reviews: placeholder,
+				},
+			};
+		}
+	} catch (e) {
+		return {
+			props: {
+				reviews: placeholder,
+			},
+		};
+	}
+}
