@@ -14,8 +14,11 @@ export default async function handler(
 			await dbConnect();
 			const product = await Products.find({ _id: productId }).populate(
 				'reviews',
-				'title comment'
+				'title comment rating userId createdAt '
 			);
-			res.status(200).json(product);
+
+			console.log(product);
+
+			return res.status(200).json(product);
 	}
 }

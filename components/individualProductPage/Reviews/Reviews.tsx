@@ -20,7 +20,8 @@ import { ReviewInterface } from '../../../models/Reviews';
 import { Product } from '../../../types/interface/productPropsInterface';
 import AddIcon from '@mui/icons-material/Add';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import Image from 'next/image';
+import { UserInterface } from '../../../models/Users';
 
 //
 
@@ -54,6 +55,7 @@ const Reviews = ({
 }: {
 	productId: string;
 	reviewsList: ReviewInterface[];
+
 	setProductData: React.Dispatch<React.SetStateAction<Product>>;
 }) => {
 	//
@@ -82,13 +84,8 @@ const Reviews = ({
 			productId,
 		});
 
-		setProductData((prev) => ({
-			...prev,
-			rating: [...prev.rating, Number(ratingValue)],
-			reviews: [response.data, ...prev.reviews],
-		}));
+		setProductData(response.data);
 
-		console.log(ratingValue?.toString());
 		setIsRated(true);
 
 		setAddReviewOpen(false);
@@ -204,10 +201,79 @@ const Reviews = ({
 								return (
 									<Box
 										key={rev._id.toString()}
-										sx={{ mb: 3, borderBottom: '1px solid gray' }}
+										sx={{
+											mb: 3,
+											borderBottom: '1px solid gray',
+											display: 'flex',
+											gap: '1em',
+										}}
 									>
-										<h3> {rev.title}</h3>
-										<p> {rev.comment} </p>
+										<Box
+											sx={{
+												width: '25%',
+												maxWidth: '100px',
+												display: 'flex',
+												flexDirection: 'column',
+												borderRight: '1px solid rgba(255,255,255,0.1)',
+												justifyContent: 'center',
+												alignItems: 'center',
+												position: 'relative',
+											}}
+										>
+											{' '}
+											<Box sx={{ borderRadius: '5px', overflow: 'hidden' }}>
+												<Image
+													src={(rev.userId as UserInterface).images[0]}
+													alt='author image'
+													width={50}
+													height={50}
+												/>
+											</Box>
+											<Typography variant='body2' color='white' noWrap>
+												{
+													(rev.userId as UserInterface)
+														.name as UserInterface['name']
+												}
+											</Typography>
+										</Box>
+										<Box
+											sx={{
+												position: 'relative',
+												paddingBottom: '1em',
+												width: '100%',
+											}}
+										>
+											<Box
+												sx={{
+													position: 'absolute',
+													right: '0',
+													bottom: '0',
+													display: 'flex',
+													gap: '.3em',
+													alignItems: 'center',
+												}}
+											>
+												<Typography
+													variant='body2'
+													color='white'
+													sx={{ fontSize: '.7rem' }}
+												>
+													{new Date(rev.createdAt).toLocaleDateString()}
+												</Typography>
+												<Rating
+													name='read-only'
+													value={rev.rating}
+													size='small'
+													readOnly
+												/>
+											</Box>
+											<Typography variant='h5' color='white'>
+												{rev.title}
+											</Typography>
+											<Typography variant='body1' color='white'>
+												{rev.comment}
+											</Typography>
+										</Box>
 									</Box>
 								);
 							})

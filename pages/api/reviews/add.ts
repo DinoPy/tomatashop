@@ -37,7 +37,16 @@ export default async function handler(
 				user.rated.push(productId);
 				await user.save();
 
-				res.status(201).json(review);
+				const newProduct = await Products.findOne({ _id: productId }).populate({
+					path: 'reviews',
+					select: 'title rating comment userId createdAt',
+					populate: {
+						path: 'userId',
+						select: 'name images',
+					},
+				});
+
+				res.status(201).json(newProduct);
 			} catch (e) {
 				if (e instanceof Error) {
 					return res.status(500).json({ message: e.message });

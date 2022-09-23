@@ -1,12 +1,14 @@
+import { UserInterface } from './Users';
 import mongoose from 'mongoose';
 
 export interface ReviewInterface {
 	_id: mongoose.Schema.Types.ObjectId;
-	userId: mongoose.Schema.Types.ObjectId;
+	userId: mongoose.Schema.Types.ObjectId | UserInterface;
 	productId: mongoose.Schema.Types.ObjectId;
 	title: string;
 	comment: string;
 	rating: number;
+	createdAt: Date;
 }
 
 const ReviewSchema = new mongoose.Schema<ReviewInterface>(

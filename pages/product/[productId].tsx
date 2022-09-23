@@ -25,7 +25,15 @@ export async function getServerSideProps(context: any) {
 	try {
 		await dbConnect();
 		await Reviews.estimatedDocumentCount();
-		const product = await Products.findById(productId).populate('reviews');
+		const product = await Products.findById(productId).populate({
+			path: 'reviews',
+			select: 'title rating comment userId createdAt',
+			populate: {
+				path: 'userId',
+				select: 'name images',
+			},
+		});
+
 		return {
 			props: {
 				product: JSON.parse(JSON.stringify(product)),

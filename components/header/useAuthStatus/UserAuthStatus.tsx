@@ -76,14 +76,43 @@ const UserAuthStatus = () => {
 				</>
 			) : (
 				<>
-					<a style={{ marginRight: '1em' }} href='#' onClick={() => signIn()}>
-						{' '}
-						Sign in <LoginIcon fontSize='small' />
-					</a>
-					<span>/ </span>
-					<Link href='/register'>
-						<a>Sign Up</a>
-					</Link>
+					<Button
+						id='basic-button'
+						aria-controls={open ? 'basic-menu' : undefined}
+						aria-haspopup='true'
+						aria-expanded={open ? 'true' : undefined}
+						onClick={handleClick}
+					>
+						<MenuIcon sx={{ color: 'white' }} />
+					</Button>
+					<Menu
+						id='basic-menu'
+						anchorEl={anchorEl}
+						open={open}
+						onClose={handleClose}
+						MenuListProps={{
+							'aria-labelledby': 'basic-button',
+						}}
+						PaperProps={{
+							sx: {
+								backgroundColor: '#252525',
+								color: 'white',
+							},
+						}}
+					>
+						<a href='#' onClick={() => signIn()}>
+							<MenuItem onClick={handleClose} sx={{ fontWeight: 'bold' }}>
+								{' '}
+								Sign in
+							</MenuItem>
+						</a>
+
+						<Link href='/register'>
+							<MenuItem onClick={handleClose} sx={{ fontWeight: 'bold' }}>
+								<a>Sign up</a>
+							</MenuItem>
+						</Link>
+					</Menu>
 				</>
 				// <Link href='/api/auth/signin'> Sign In </Link>
 			)}
