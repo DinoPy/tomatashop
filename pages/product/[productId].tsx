@@ -5,6 +5,7 @@ import { Product } from '../../types/interface/productPropsInterface';
 import Products from '../../models/Products';
 import Layout from '../../components/layout';
 import dbConnect from '../../lib/dbConnect';
+import Reviews from '../../models/Reviews';
 
 const ProductPage: NextPage<{ product: Product }> = ({ product }) => {
 	return (
@@ -23,7 +24,8 @@ export async function getServerSideProps(context: any) {
 
 	try {
 		await dbConnect();
-		const product = await Products.findById(productId);
+		await Reviews.estimatedDocumentCount();
+		const product = await Products.findById(productId).populate('reviews');
 		return {
 			props: {
 				product: JSON.parse(JSON.stringify(product)),

@@ -8,10 +8,8 @@ const ProductSchema = new mongoose.Schema<Product>(
 		description: { type: String, required: true },
 		image: { type: String, required: true },
 		category: { type: String, required: true },
-		rating: {
-			rate: { type: Number, required: true },
-			count: { type: Number, required: true },
-		},
+		rating: [{ type: Number }],
+		reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reviews' }],
 	},
 	{ timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

@@ -12,7 +12,10 @@ export default async function handler(
 	switch (method) {
 		case 'GET':
 			await dbConnect();
-			const product = await Products.find({ _id: productId });
+			const product = await Products.find({ _id: productId }).populate(
+				'reviews',
+				'title comment'
+			);
 			res.status(200).json(product);
 	}
 }

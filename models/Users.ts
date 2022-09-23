@@ -9,6 +9,7 @@ export interface UserInterface {
 	orders: Schema.Types.ObjectId[];
 	favorites: Schema.Types.ObjectId[];
 	cart: { id: Schema.Types.ObjectId; quantity: number }[];
+	rated: string[];
 }
 
 const UserSchema = new Schema<UserInterface>(
@@ -29,6 +30,7 @@ const UserSchema = new Schema<UserInterface>(
 				quantity: { type: Number, required: true, default: 1 },
 			},
 		],
+		rated: { type: [String], required: true },
 	},
 	{ timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

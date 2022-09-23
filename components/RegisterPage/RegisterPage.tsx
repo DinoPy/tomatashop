@@ -158,7 +158,7 @@ const RegisterPage = () => {
 					component='form'
 					onSubmit={handleSubmit}
 					noValidate
-					sx={{ width: '100%' }}
+					// sx={{ maxWidth: '600px', margin: '2em' }}
 				>
 					<StyledInput
 						id='name'
@@ -223,6 +223,7 @@ const RegisterPage = () => {
 						inputProps={{ accept: 'image/*' }}
 						color='success'
 						fullWidth
+						sx={{ mt: 2 }}
 					/>
 					<LoadingButton
 						variant='outlined'
@@ -231,6 +232,7 @@ const RegisterPage = () => {
 						disabled={loading}
 						loading={loading}
 						fullWidth
+						sx={{ mt: 5 }}
 					>
 						Register
 					</LoadingButton>
