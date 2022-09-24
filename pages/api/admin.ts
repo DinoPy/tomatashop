@@ -28,8 +28,6 @@ export default async function handler(
 			product[column] = newValue;
 			await product.save();
 
-			console.log(product);
-
 			return res.status(200).json({ message: 'success' });
 		}
 		default: {

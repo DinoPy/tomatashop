@@ -93,10 +93,10 @@ const AdminPage = () => {
 						setValue(e.target.value);
 					}}
 					onBlur={(e) => {
-						console.log('product id', row.row.original._id);
-						console.log('Column', row.column.id);
-						console.log('Prev Value', row.getValue());
-						console.log('New Value', e.target.value);
+						// .log('product id', row.row.original._id);
+						// .log('Column', row.column.id);
+						// .log('Prev Value', row.getValue());
+						// .log('New Value', e.target.value);
 
 						const updateProduct = async () => {
 							try {
