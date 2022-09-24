@@ -1,0 +1,6 @@
+.tableContainer {
+	width: fit-content;
+	max-width: 90%;
+	overflow-x: auto;
+	margin: 3rem auto;
+}

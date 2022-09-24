@@ -1,4 +1,4 @@
-import { model, Schema, models } from 'mongoose';
+import mongoose from 'mongoose';
 
 export interface UserInterface {
 	googleOauthId?: string;
@@ -6,33 +6,36 @@ export interface UserInterface {
 	password?: string;
 	email: string;
 	images: string[];
-	orders: Schema.Types.ObjectId[];
-	favorites: Schema.Types.ObjectId[];
-	cart: { id: Schema.Types.ObjectId; quantity: number }[];
+	orders: mongoose.Schema.Types.ObjectId[];
+	favorites: mongoose.Schema.Types.ObjectId[];
+	cart: { id: mongoose.Schema.Types.ObjectId; quantity: number }[];
 	rated: string[];
+	access: 'ADMIN' | 'REGULAR';
 }
 
-const UserSchema = new Schema<UserInterface>(
+const UserSchema = new mongoose.Schema<UserInterface>(
 	{
 		googleOauthId: { type: String },
 		name: { type: String, required: true },
 		password: { type: String },
 		email: { type: String, required: true, unique: true },
 		images: { type: [String], required: true },
-		orders: { type: [Schema.Types.ObjectId], ref: 'Orders' },
-		favorites: { type: [Schema.Types.ObjectId], ref: 'Products' },
+		orders: { type: [mongoose.Schema.Types.ObjectId], ref: 'Orders' },
+		favorites: { type: [mongoose.Schema.Types.ObjectId], ref: 'Products' },
 		cart: [
 			{
 				_id: {
-					type: Schema.Types.ObjectId,
+					type: mongoose.Schema.Types.ObjectId,
 					ref: 'Products',
 				},
 				quantity: { type: Number, required: true, default: 1 },
 			},
 		],
 		rated: { type: [String], required: true },
+		access: { type: String, required: true, default: 'REGULAR' },
 	},
 	{ timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
-export default models.Users || model<UserInterface>('Users', UserSchema);
+export default mongoose.models.Users ||
+	mongoose.model<UserInterface>('Users', UserSchema);

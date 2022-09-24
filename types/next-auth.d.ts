@@ -11,6 +11,7 @@ declare module 'next-auth' {
 			favorites: string[];
 			cart: string[];
 			_id: string;
+			access: 'ADMIN' | 'REGULAR';
 		};
 	}
 }

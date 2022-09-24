@@ -2,9 +2,17 @@ import React from 'react';
 import styles from './OrderHistory.module.css';
 import { OrdersInterface } from '../../models/Orders';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 const OrderHistory = ({ orders }: { orders: OrdersInterface[] }) => {
-	console.log(orders);
+	const { data: session, status } = useSession();
+
+	if (status === 'loading') {
+		return <div>Loading...</div>;
+	}
+
+	if (status === 'unauthenticated') return <div>Unauthenticated</div>;
+
 	return (
 		<div className={styles.orderHistoryContainer}>
 			{orders.length > 0 ? (
@@ -25,14 +33,25 @@ const OrderHistory = ({ orders }: { orders: OrdersInterface[] }) => {
 								</p>
 							</div>
 							<div>
-								<p>Quantity {order.items.length}</p>
+								<p>
+									Quantity{' '}
+									{order.items.reduce(
+										(total: number, itm: { quantity: number }) => {
+											return total + itm.quantity;
+										},
+										0
+									)}
+								</p>
 
 								<p>
 									Total €{' '}
 									{order.items
 										.reduce(
-											(total: number, item: { purchaseTimePrice: number }) => {
-												return total + item.purchaseTimePrice;
+											(
+												total: number,
+												item: { purchaseTimePrice: number; quantity: number }
+											) => {
+												return total + item.purchaseTimePrice * item.quantity;
 											},
 											0
 										)

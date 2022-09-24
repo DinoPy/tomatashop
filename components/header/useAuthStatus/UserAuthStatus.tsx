@@ -67,6 +67,14 @@ const UserAuthStatus = () => {
 							</MenuItem>
 						</Link>
 
+						{session?.user.access === 'ADMIN' && (
+							<Link href='/admin'>
+								<MenuItem onClick={handleClose} sx={{ fontWeight: 'bold' }}>
+									<a>Admin</a>
+								</MenuItem>
+							</Link>
+						)}
+
 						<a href='#' onClick={() => signOut()}>
 							<MenuItem onClick={handleClose} sx={{ fontWeight: 'bold' }}>
 								Sign out <LogoutIcon fontSize='small' />
