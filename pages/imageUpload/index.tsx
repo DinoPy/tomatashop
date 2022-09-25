@@ -20,7 +20,6 @@ const FileUploadTest: React.FC = () => {
 				body: file.file,
 			})
 				.then((response) => {
-					console.log(response);
 					setImageUploadUrl('');
 				})
 				.catch((e) => {});
@@ -61,7 +60,9 @@ const FileUploadTest: React.FC = () => {
 					id='image'
 					onChange={(e) => onFileChange(e)}
 				/>
-				<button type='submit'>Submit</button>
+				<button type='submit' disabled={file.file === null}>
+					Submit
+				</button>
 			</form>
 		</div>
 	);

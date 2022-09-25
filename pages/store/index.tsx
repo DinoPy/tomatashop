@@ -30,7 +30,7 @@ export async function getServerSideProps({ query }: any) {
 		await dbConnect();
 
 		const countProducts = await Products.countDocuments();
-		const data = await Products.find().skip(skipPage).limit(12);
+		const data = await Products.find({}).skip(skipPage).limit(12);
 
 		return {
 			props: {

@@ -31,7 +31,7 @@ const theme = createTheme({
 	},
 });
 
-const modalStyle = {
+export const modalStyle = {
 	position: 'absolute' as 'absolute',
 	top: '50%',
 	left: '50%',

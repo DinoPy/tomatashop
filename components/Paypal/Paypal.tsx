@@ -78,7 +78,6 @@ const Paypal = () => {
 					return actions!.order!.capture().then(async (details) => {
 						// const name = details?.payer?.name?.given_name;
 						// alert(`Transaction completed by ${name}`);
-						console.log(details);
 
 						const response = await axios.post('/api/verify-order', {
 							userId: session?.user._id,

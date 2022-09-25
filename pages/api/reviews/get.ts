@@ -22,7 +22,7 @@ export default async function handler(
 					'title comment'
 				);
 
-				console.log(reviews.reviews);
+				// console.log(reviews.reviews);
 				// res.status(201).json(reviews.);
 			} catch (e) {
 				return res.status(500).json({ message: 'Server error' });

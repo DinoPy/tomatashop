@@ -17,7 +17,7 @@ export default async function handler(
 				'title comment rating userId createdAt '
 			);
 
-			console.log(product);
+			// console.log(product);
 
 			return res.status(200).json(product);
 	}

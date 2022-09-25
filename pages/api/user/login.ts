@@ -9,7 +9,7 @@ export default async function handler(
 ) {
 	switch (req.method) {
 		case 'POST': {
-			console.log(req.body);
+			//console.log(req.body);
 			const { email, password } = req.body;
 
 			const errors = [];

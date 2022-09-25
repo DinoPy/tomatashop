@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { v4 as uuidv4 } from 'uuid';
 import AWS from 'aws-sdk';
 
-const s3 = new AWS.S3({
+export const s3 = new AWS.S3({
 	accessKeyId: process.env.S3_KEY,
 	secretAccessKey: process.env.S3_SECRET,
 	region: process.env.S3_REGION,

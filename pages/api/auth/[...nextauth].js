@@ -27,7 +27,6 @@ export default NextAuth({
 				try {
 					await dbConnect();
 					const user = await Users.findOne({ email: credentials.email });
-					console.log(user);
 
 					if (!user) {
 						return null;

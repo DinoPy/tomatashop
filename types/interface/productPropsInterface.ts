@@ -6,7 +6,13 @@ export interface ProductsProps {
 }
 
 export interface Product {
-	category: string;
+	category:
+		| 'painting'
+		| 'sketch'
+		| 'illustration'
+		| 'calendar'
+		| 'cover'
+		| 'clothing';
 	description: string;
 	_id: string;
 	image: string;
