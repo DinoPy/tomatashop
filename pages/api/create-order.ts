@@ -149,10 +149,7 @@ export default async function handler(
 						category: Category.DIGITAL_GOODS,
 						// change later into a valid description
 						description: item._id.title,
-						tax: {
-							currency_code: 'EUR',
-							value: '0',
-						},
+
 						unit_amount: {
 							currency_code: 'EUR',
 							value: item._id.price,

@@ -138,7 +138,7 @@ const AddProductModal = ({
 			setIsAddProductModalOpen(false);
 		} catch (e: any) {
 			console.log(e);
-
+			setAddProductLoading(false);
 			e.response?.data?.errors.forEach(
 				(error: { field: string; message: string }) => {
 					if (error.field === 'title') {

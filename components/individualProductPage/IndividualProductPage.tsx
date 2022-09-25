@@ -175,7 +175,7 @@ const IndividualProductPage: NextPage<{ product: Product }> = ({ product }) => {
 				<div className={styles.productDetails}>
 					<div>
 						<h3> Price </h3>
-						<p className={styles.price}> ${productData?.price} </p>
+						<p className={styles.price}> €{productData?.price.toFixed(2)} </p>
 					</div>
 					<div>
 						<h3> Category </h3>

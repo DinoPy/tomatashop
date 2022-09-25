@@ -121,7 +121,7 @@ const AdminPage = () => {
 			} else if (key === 'Index') {
 				return (
 					<span style={{ display: 'flex', justifyContent: 'space-between' }}>
-						<p style={{ fontSize: '.8rem' }}> {row.row.id} </p>
+						<p style={{ fontSize: '.8rem' }}> {Number(row.row.id) + 1} </p>
 						<ArrowForwardIcon
 							sx={{
 								cursor: 'pointer',

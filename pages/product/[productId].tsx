@@ -37,6 +37,7 @@ export async function getServerSideProps(context: any) {
 		return {
 			props: {
 				product: JSON.parse(JSON.stringify(product)),
+				key: productId,
 			},
 		};
 	} catch (error) {

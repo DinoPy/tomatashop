@@ -129,6 +129,7 @@ const NavigationSubheader: React.FC = () => {
 						}}
 					>
 						<input
+							autoComplete='off'
 							className={styles.inputBox}
 							type='text'
 							name='searchEl'
@@ -157,11 +158,14 @@ const NavigationSubheader: React.FC = () => {
 							{searchResults.length > 0 &&
 								toSearch.length > 2 &&
 								searchResults?.map((result) => (
-									<>
-										<Link href={`/product/${result._id}`} key={result._id}>
-											<a>{`${result.title}`}</a>
-										</Link>
-									</>
+									<Link href={`/product/${result._id}`} key={result._id}>
+										<a
+											onClick={() => {
+												setSearchResultsOpen(false);
+												setInputValue('');
+											}}
+										>{`${result.title}`}</a>
+									</Link>
 								))}
 						</div>
 					)}
