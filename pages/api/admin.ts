@@ -132,9 +132,9 @@ export default async function handler(
 					},
 					(err, data) => {
 						if (err) {
-							console.log(err);
+							console.error(err);
 						} else {
-							// console.log(data);
+							console.log(data);
 						}
 					}
 				);
